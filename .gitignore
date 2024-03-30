@@ -6,3 +6,5 @@ medium/results/
 medium/sumo/trips.odtrips*
 commercial/sumo/trips.odtrips*
 commercial/results/*
+datasets
+commercial/results

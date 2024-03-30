@@ -2,7 +2,7 @@
 
     <input>
         <net-file value="../net/osm.net.xml" />
-        <route-files value="/home/pavel/dev/diplom/tssproblem/commercial/sumo/trips.odtrips_049.rou.xml" />
+        <route-files value="/home/pavel/dev/tssproblem/commercial/sumo/trips.odtrips_050.rou.xml" />
         <additional-files value="../polygons/osm.poly.xml" />
     </input>
 
