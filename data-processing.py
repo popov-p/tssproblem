@@ -3,17 +3,18 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import re
-
+import csv
 parser = argparse.ArgumentParser(description='Process traffic demand')
 parser.add_argument('-d', type=str, default='datasets/current', help='path to directory with .xlsx data')
 parser.add_argument('-o', type=str, default='datasets/processed', help='path to processed sorted .xlsx output')
 parser.add_argument('-p', type=str, default='datasets/plot-data', help='path to xlsx plot tables')
 parser.add_argument('-od', type=str, default='datasets/od-data', help='path to for od-data')
+parser.add_argument('-dfr', type=str, default='datasets/dfrouter-data', help='path to dfrouter data csv')
 args = parser.parse_args()
 
 def process_xlsx(file_path):
     df = pd.read_excel(file_path)
-    df = df[['Volume', 'Number', 'Time']]
+    df = df[['Speed','Volume', 'Number', 'Time']]
     df['Time'] = pd.to_datetime(df['Time'])
     df['Volume'] = df['Volume'].fillna(0)
     return df
@@ -70,6 +71,16 @@ def extract_number(filename):
         return int(number_part) if number_part.isdigit() else None
     return None
 
+def process_for_dfrouter(df, filename):
+    map_detector_id = str(extract_number(filename)) # 6581, 900700 etc..
+    df_sorted = df.sort_values(by='Number')
+    detector_ids = ["d_" + map_detector_id + "_" + str(number) for number in df_sorted['Number']]
+
+    df_sorted['Detector'] = detector_ids
+    df_sorted['Time'] = 5
+    df_selected = df_sorted[['Detector','Time' ,'Volume', 'Speed']]
+    df_selected_renamed = df_selected.rename(columns={'Volume': 'qPKW', 'Speed': 'vPKW'})[['Detector', 'Time', 'qPKW', 'vPKW']]
+    df_selected_renamed.to_csv(os.path.join(args.d, 'dfrouter-measures.csv'), index=False, mode='a', header=False)
 def plot(mean_dict, plot_name):
     plt.figure(figsize=(10, 6))
     plt.bar(mean_dict.keys(), mean_dict.values(), color='skyblue')
@@ -87,7 +98,7 @@ def main():
             cur_df = process_xlsx(file_path)
             n = 20
             first_n_days_data = sort_first_n_days(n, cur_df=cur_df)
-
+            process_for_dfrouter(cur_df, filename=filename)
             time_stats = form_mean_stats(first_n_days_data=first_n_days_data)
             save_processed(first_n_days_data, 'proc_'+filename)
             save_processed_mean(time_stats, 'mean_'+filename)
