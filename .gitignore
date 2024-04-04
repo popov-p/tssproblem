@@ -8,3 +8,5 @@ commercial/sumo/trips.odtrips*
 commercial/results/*
 datasets
 commercial/results
+commercial/dfrouter/routes.rou.xml
+commercial/dfrouter/vehicles.rou.xml

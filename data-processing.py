@@ -72,15 +72,23 @@ def extract_number(filename):
     return None
 
 def process_for_dfrouter(df, filename):
+    for_dfr_dir = args.dfr
+    os.makedirs(for_dfr_dir, exist_ok=True)
     map_detector_id = str(extract_number(filename)) # 6581, 900700 etc..
-    df_sorted = df.sort_values(by='Number')
+    df_sorted = df.sort_values(by=['Number', 'Time'])
+    df_sorted.fillna(0, inplace=True)
     detector_ids = ["d_" + map_detector_id + "_" + str(number) for number in df_sorted['Number']]
 
     df_sorted['Detector'] = detector_ids
     df_sorted['Time'] = 5
     df_selected = df_sorted[['Detector','Time' ,'Volume', 'Speed']]
+    df_selected['Volume'] /= 12
     df_selected_renamed = df_selected.rename(columns={'Volume': 'qPKW', 'Speed': 'vPKW'})[['Detector', 'Time', 'qPKW', 'vPKW']]
-    df_selected_renamed.to_csv(os.path.join(args.d, 'dfrouter-measures.csv'), index=False, mode='a', header=False)
+
+    output_file = os.path.join(for_dfr_dir, 'dfrouter-measures.csv')
+    write_header = not os.path.exists(output_file)
+    df_selected_renamed.to_csv(output_file, index=False, mode='a', header=write_header, sep=';')
+
 def plot(mean_dict, plot_name):
     plt.figure(figsize=(10, 6))
     plt.bar(mean_dict.keys(), mean_dict.values(), color='skyblue')
@@ -92,20 +100,25 @@ def plot(mean_dict, plot_name):
     plt.show()
 
 def main():
+    n = 20
+    n_dfr = 1
+    
     for filename in os.listdir(args.d):
         if filename.endswith('.xlsx'):
             file_path = os.path.join(args.d, filename)
             cur_df = process_xlsx(file_path)
-            n = 20
+            
             first_n_days_data = sort_first_n_days(n, cur_df=cur_df)
-            process_for_dfrouter(cur_df, filename=filename)
+            first_n_dfr_days_data = sort_first_n_days(n_dfr, cur_df=cur_df)
+
+            process_for_dfrouter(first_n_dfr_days_data, filename=filename)
             time_stats = form_mean_stats(first_n_days_data=first_n_days_data)
             save_processed(first_n_days_data, 'proc_'+filename)
             save_processed_mean(time_stats, 'mean_'+filename)
             save_for_od_data(time_stats, 'range_'+filename)
             print(time_stats)
             print(first_n_days_data)
-            #plot(time_stats, filename)
+            plot(time_stats, filename)
 
 if __name__ == '__main__':
     main()

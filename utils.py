@@ -39,7 +39,7 @@ net_dict = {
 
 #simulation args
 time_to_teleport = str(-1)
-last_simulation_step = str(4500)
+last_simulation_step = str(10800)
 #---------------
 
 
@@ -143,3 +143,27 @@ def histogram():
     plt.title('Total times: commercial')
     plt.grid(True)
 plt.show()
+
+
+
+def update_additional_files(input_file, new_net_file ,new_additional_files, output_file):
+    tree = ET.parse(input_file)
+    root = tree.getroot()
+
+    net_file_elem = root.find("./input/net-file")
+    net_file_elem.set("value", new_net_file)
+
+    additional_files_elem = root.find("./input/additional-files")
+
+    additional_files_elem.set("value", new_additional_files)
+
+    gui_only_elem = root.find("./gui_only")
+    if gui_only_elem is not None:
+        root.remove(gui_only_elem)
+
+    tree.write(output_file, encoding="utf-8", xml_declaration=True)
+
+# input_file = "commercial/sumo/osm.sumocfg"
+# new_additional_files = "../dfrouter/new_routes.rou.xml, ../dfrouter/new_vehicles.rou.xml, jajaja-lol"
+# output_file = "updated_config.sumocfg"
+# update_additional_files(input_file, new_additional_files, output_file)
