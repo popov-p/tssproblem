@@ -38,15 +38,22 @@ def evaluate_particle(particle, **kwargs):
     output_file = f"/mnt/tss-inter-logs/{kwargs.get('folder_name')}/statistic_output_{iter_id}.xml"
     additional_file = f"/mnt/tss-inter-logs/{kwargs.get('folder_name')}/tl_logic_{iter_id}.xml"
     utils.create_new_logic(net_input=kwargs.get('net_file'), additional_output=additional_file, solution=np.round(particle))
+    
+    new_additional_files = f"{os.path.abspath('commercial/dfrouter/routes.rou.xml')}, {os.path.abspath('commercial/dfrouter/vehicles.rou.xml')}, " + additional_file 
+    updated_sumocfg = f"/mnt/tss-inter-logs/{kwargs.get('folder_name')}/osm_{iter_id}.sumocfg"
+    utils.update_additional_files(kwargs.get('sumocfg_file'),utils.net_dict.get('commercial'),new_additional_files, updated_sumocfg)
     command = [utils.sumo_executable,
-        '-c', kwargs.get('sumocfg_file'),
+        '-c', updated_sumocfg,
         '--statistic-output', output_file,
-        '--additional-files', additional_file,
         '--time-to-teleport', utils.time_to_teleport,
         '--no-warnings', 't',
         '--no-step-log', 't',
-        '-e', utils.last_simulation_step
+        '--quit-on-end', 't',
+        '-e', utils.last_simulation_step,
+        '--default.carfollowmodel', utils.default_carfollowmodel,
+        '--collision.mingap-factor', utils.collision_mingap_factor
     ]
+
 
     process = subprocess.Popen(command)
     with lock:
@@ -59,7 +66,7 @@ def evaluate_particle(particle, **kwargs):
 def fitness_func(swarm, **kwargs):
     times = kwargs.get('times')
     partial_evaluate_particle = partial(evaluate_particle, **kwargs)
-    with ProcessPoolExecutor(12) as executor:
+    with ProcessPoolExecutor(14) as executor:
         fitness_values = list(executor.map(partial_evaluate_particle, swarm))
     cur_swarm_time = time.time()
     times.append(cur_swarm_time) #current swarm time logging 
@@ -75,8 +82,8 @@ def main(argv):
         lower_bounds, upper_bounds = create_bounds(utils.net_dict.get(simulation_name))
         num_variables = len(lower_bounds)
         options = {'c1': 2.05, 'c2': 2.05, 'w': 0.72984} #global-best-pso 
-        iters = 2
-        optimizer = ps.single.GlobalBestPSO(n_particles=16, dimensions=num_variables, options=options, oh_strategy={ "w":'exp_decay', "c1":'nonlin_mod',"c2":'lin_variation'}, bounds=(lower_bounds, upper_bounds))
+        iters = 300
+        optimizer = ps.single.GlobalBestPSO(n_particles=30, dimensions=num_variables, options=options, oh_strategy={ "w":'exp_decay', "c1":'nonlin_mod',"c2":'lin_variation'}, bounds=(lower_bounds, upper_bounds))
         ff_wrapper = lambda swarm: fitness_func(swarm=swarm, 
                                                 net_file=utils.net_dict.get(simulation_name), 
                                                 folder_name=simulation_name,

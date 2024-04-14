@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-04-03 21:21:03 by Eclipse SUMO dfrouter Version 1.19.0
+<!-- generated on 2024-04-13 23:26:34 by Eclipse SUMO dfrouter Version 1.19.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/dfrouterConfiguration.xsd">
 
     <input>
         <net-file value="commercial/net/osm.net.xml"/>
         <detector-files value="commercial/dfrouter/detectors.add.xml"/>
-        <measure-files value="datasets/dfrouter-data/dfrouter-measures.csv"/>
+        <measure-files value="datasets/dfrouter-data/dfrouter-mean-measures.csv"/>
     </input>
 
     <output>
         <routes-output value="commercial/dfrouter/routes.rou.xml"/>
+        <detector-output value="commercial/dfrouter/d-out.add.xml"/>
         <emitters-output value="commercial/dfrouter/vehicles.rou.xml"/>
     </output>
 
     <processing>
-        <randomize-flows value="true"/>
         <time-step value="300"/>
     </processing>
 
@@ -36,6 +36,7 @@
     <route id="6587_to_900768" edges="6587 23019070#0 23114445#0 900768"/>
     <route id="6587_to_900701" edges="6587 23019070#0 1057892462 900701"/>
 
+    <route id="6591_to_-E0" edges="6591 -E0"/>
     <route id="6591_to_900768" edges="6591 23019070#0 23114445#0 900768"/>
     <route id="6591_to_900701" edges="6591 23019070#0 1057892462 900701"/>
     <route id="6591_to_6586" edges="6591 6586"/>

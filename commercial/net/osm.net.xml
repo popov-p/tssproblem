@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-04-04 13:34:42 by Eclipse SUMO netedit Version 1.19.0
+<!-- generated on 2024-04-13 22:35:10 by Eclipse SUMO netedit Version 1.19.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
@@ -267,14 +267,14 @@
     </edge>
 
     <tlLogic id="linked_0" type="static" programID="0" offset="0">
-        <phase duration="35" state="GGGGGGrrrGGrrGGrrrrrrGG"/>
-        <phase duration="40" state="GGrrrrGrrrrGGGGGGGGrrrr"/>
-        <phase duration="30" state="GGGGrrGGGGGrrrrrrGGGGrr"/>
+        <phase duration="65" state="GGGGGGrrrGGrrGGrrrrrrGG"/>
+        <phase duration="35" state="GGrrrrGrrrrGGGGGGGGrrrr"/>
+        <phase duration="20" state="GGGGrrGGGGGrrrrrrGGGGrr"/>
     </tlLogic>
     <tlLogic id="separate_0" type="static" programID="0" offset="0">
-        <phase duration="32" state="GGrrrGGGGGrrrGr"/>
-        <phase duration="30" state="GGGGGrrrGGGGGrr"/>
-        <phase duration="32" state="GGrrrrrrGGrrrGG"/>
+        <phase duration="40" state="GGrrrGGGGGrrrGr"/>
+        <phase duration="22" state="GGGGGrrrGGGGGrr"/>
+        <phase duration="34" state="GGrrrrrrGGrrrGG"/>
     </tlLogic>
 
     <junction id="248441665" type="traffic_light" x="273.18" y="340.78" incLanes="1057892462_0 1057892462_1 900700_0 900700_1" intLanes=":248441665_0_0 :248441665_0_1 :248441665_2_0 :248441665_2_1 :248441665_4_0 :248441665_4_1" shape="294.57,336.89 288.51,325.61 287.98,325.01 282.81,321.22 281.12,324.19 280.06,326.66 279.21,328.74 278.11,330.54 276.34,332.15 273.46,333.69 278.52,345.45">

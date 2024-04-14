@@ -38,15 +38,16 @@ def fitness_func(solution, **kwargs):
     new_additional_files = f"{os.path.abspath('commercial/dfrouter/routes.rou.xml')}, {os.path.abspath('commercial/dfrouter/vehicles.rou.xml')}, " + additional_file 
     updated_sumocfg = f"/mnt/tss-inter-logs/{kwargs.get('folder_name')}/osm_{iter_id}.sumocfg"
     utils.update_additional_files(kwargs.get('sumocfg_file'),utils.net_dict.get('commercial'),new_additional_files, updated_sumocfg)
-    print('---------------------------- ', utils.net_dict.get('commercial'))
     command = [utils.sumo_executable,
         '-c', updated_sumocfg,
         '--statistic-output', output_file,
         '--time-to-teleport', utils.time_to_teleport,
         '--no-warnings', 't',
         '--no-step-log', 't',
-        '--quit-on-end', 't'
-        #'-e', utils.last_simulation_step
+        '--quit-on-end', 't',
+        '-e', utils.last_simulation_step,
+        '--default.carfollowmodel', utils.default_carfollowmodel,
+        '--collision.mingap-factor', utils.collision_mingap_factor,
     ]
 
     process = subprocess.Popen(command)
@@ -70,7 +71,7 @@ def main(argv):
         sigma = 5
         #----------------------
         es = cma.CMAEvolutionStrategy(x0, sigma, opts)
-        iter_count = 75
+        iter_count = 80
         ff_partial = partial(fitness_func,
                              net_file=utils.net_dict.get(simulation_name),
                              folder_name=simulation_name,
@@ -79,7 +80,7 @@ def main(argv):
         iter_times = [time.time(),]
         cost_history = []
         #-------------------------------
-        with ProcessPoolExecutor(15) as executor:
+        with ProcessPoolExecutor(6) as executor:
             for _ in range(iter_count):
                 solutions = es.ask()
                 fitness_values = list(executor.map(ff_partial, solutions))

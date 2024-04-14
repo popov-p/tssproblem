@@ -38,21 +38,26 @@ def on_generation(ga_instance, **kwargs):
 #end utils
 
 def fitness_func(ga_instance, solution, solution_idx, **kwargs): #specific argument order for genetic algorithm
-    #parameters preparation
     iter_id = utils.generate_id()
     output_file = f"/mnt/tss-inter-logs/{kwargs.get('folder_name')}/statistic_output_{iter_id}.xml"
     additional_file = f"/mnt/tss-inter-logs/{kwargs.get('folder_name')}/tl_logic_{iter_id}.xml"
-    utils.create_new_logic(net_input=kwargs.get('net_file'), additional_output=additional_file, solution=solution)
-
+    utils.create_new_logic(net_input=kwargs.get('net_file'), additional_output=additional_file, solution=np.round(solution))
+    
+    new_additional_files = f"{os.path.abspath('commercial/dfrouter/routes.rou.xml')}, {os.path.abspath('commercial/dfrouter/vehicles.rou.xml')}, " + additional_file 
+    updated_sumocfg = f"/mnt/tss-inter-logs/{kwargs.get('folder_name')}/osm_{iter_id}.sumocfg"
+    utils.update_additional_files(kwargs.get('sumocfg_file'),utils.net_dict.get('commercial'),new_additional_files, updated_sumocfg)
     command = [utils.sumo_executable,
-        '-c', kwargs.get('sumocfg_file'),
+        '-c', updated_sumocfg,
         '--statistic-output', output_file,
-        '--additional-files', additional_file,
         '--time-to-teleport', utils.time_to_teleport,
         '--no-warnings', 't',
         '--no-step-log', 't',
-        '-e', utils.last_simulation_step
+        '--quit-on-end', 't',
+        '-e', utils.last_simulation_step,
+        '--default.carfollowmodel', utils.default_carfollowmodel,
+        '--collision.mingap-factor', utils.collision_mingap_factor
     ]
+
     #----------------------
     process = subprocess.Popen(command)
     with lock:
@@ -72,7 +77,7 @@ def main(argv):
         gene_type = int
         gene_space = set_gene_space(utils.net_dict.get(simulation_name))
         generation_times = [time.time(), ]
-        num_generations = 400
+        num_generations = 200
         ff_wrapper = lambda ga_instance, solution, solution_idx: fitness_func(ga_instance, 
                                                                               solution, 
                                                                               solution_idx, 
