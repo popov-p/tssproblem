@@ -14,9 +14,8 @@ ch_iter_time = 'ch_iter_time'
 #----------
 
 #simulation-names
-medium = 'medium'
 commercial = 'commercial'
-names = [medium, commercial]
+names = [commercial]
 #-----
 
 #exe
@@ -25,14 +24,12 @@ sumo_executable = '/usr/bin/sumo'
 
 #conifigs
 sumocfg_dict = {
-    medium: f'{BASEDIR}/medium/sumo/osm.sumocfg',
     commercial: f'{BASEDIR}/commercial/sumo/osm.sumocfg',
 }
 #--------
 
 #net-files
 net_dict = {
-    medium: f'{BASEDIR}/medium/net/osm.net.xml',
     commercial: f'{BASEDIR}/commercial/net/osm.net.xml',
 }
 #---------
