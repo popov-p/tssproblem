@@ -45,7 +45,7 @@ def fitness_func(solution, **kwargs):
         '--no-warnings', 't',
         '--no-step-log', 't',
         '--quit-on-end', 't',
-        '-e', utils.last_simulation_step,
+        #'-e', utils.last_simulation_step,
         '--default.carfollowmodel', utils.default_carfollowmodel,
         '--collision.mingap-factor', utils.collision_mingap_factor,
     ]
@@ -80,7 +80,7 @@ def main(argv):
         iter_times = [time.time(),]
         cost_history = []
         #-------------------------------
-        with ProcessPoolExecutor(6) as executor:
+        with ProcessPoolExecutor(15) as executor:
             for _ in range(iter_count):
                 solutions = es.ask()
                 fitness_values = list(executor.map(ff_partial, solutions))

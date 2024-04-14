@@ -49,7 +49,7 @@ def evaluate_particle(particle, **kwargs):
         '--no-warnings', 't',
         '--no-step-log', 't',
         '--quit-on-end', 't',
-        '-e', utils.last_simulation_step,
+        #'-e', utils.last_simulation_step,
         '--default.carfollowmodel', utils.default_carfollowmodel,
         '--collision.mingap-factor', utils.collision_mingap_factor
     ]

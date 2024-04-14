@@ -53,7 +53,7 @@ def fitness_func(ga_instance, solution, solution_idx, **kwargs): #specific argum
         '--no-warnings', 't',
         '--no-step-log', 't',
         '--quit-on-end', 't',
-        '-e', utils.last_simulation_step,
+        #'-e', utils.last_simulation_step,
         '--default.carfollowmodel', utils.default_carfollowmodel,
         '--collision.mingap-factor', utils.collision_mingap_factor
     ]
@@ -77,7 +77,7 @@ def main(argv):
         gene_type = int
         gene_space = set_gene_space(utils.net_dict.get(simulation_name))
         generation_times = [time.time(), ]
-        num_generations = 200
+        num_generations = 80
         ff_wrapper = lambda ga_instance, solution, solution_idx: fitness_func(ga_instance, 
                                                                               solution, 
                                                                               solution_idx, 

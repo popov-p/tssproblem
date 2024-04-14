@@ -39,7 +39,7 @@ net_dict = {
 
 #simulation args
 time_to_teleport = str(-1)
-last_simulation_step = str(10800)
+#last_simulation_step = str(10800)
 collision_mingap_factor = str(-1)
 default_carfollowmodel = 'IDM'
 #---------------
@@ -54,7 +54,7 @@ def create_new_logic(net_input, additional_output, solution):
 
     for tl_logic in tl_logics:
         for phase in tl_logic.findall('.//phase'):
-            if "y" not in phase.attrib["state"]: #if phase os "optimizable"
+            if "y" not in phase.attrib["state"]: #if phase is "optimizable"
                 duration = int(solution[0])
                 solution = np.delete(solution, 0)
                 phase.set('duration', str(duration))
@@ -70,8 +70,13 @@ def create_new_logic(net_input, additional_output, solution):
 def get_total_waiting_time(xml_file):
     tree = ET.parse(xml_file)
     root = tree.getroot()
-    vehicle_trip_statistics = root.find(".//vehicleTripStatistics")
-    return float(vehicle_trip_statistics.get("waitingTime"))
+
+    vehicle_trip_statistics = root.find(".//vehicleTripStatistics") # vehicleTripStatistics 
+    performance = root.find(".//performance")
+
+    waitingTime = vehicle_trip_statistics.get('waitingTime')
+    end = performance.get('end')
+    return float(waitingTime)*float(end) # waitingTime
 
 def generate_id():
     unique_id = str(uuid.uuid4())
@@ -164,8 +169,3 @@ def update_additional_files(input_file, new_net_file ,new_additional_files, outp
         root.remove(gui_only_elem)
 
     tree.write(output_file, encoding="utf-8", xml_declaration=True)
-
-# input_file = "commercial/sumo/osm.sumocfg"
-# new_additional_files = "../dfrouter/new_routes.rou.xml, ../dfrouter/new_vehicles.rou.xml, jajaja-lol"
-# output_file = "updated_config.sumocfg"
-# update_additional_files(input_file, new_additional_files, output_file)
