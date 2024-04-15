@@ -56,7 +56,7 @@ def create_new_logic(net_input, additional_output, solution):
                 solution = np.delete(solution, 0)
                 phase.set('duration', str(duration))
             else: #yellow constant 3
-                phase.set('duration', str(4))
+                phase.set('duration', str(3))
         tl_logic.set('programID', 'generated')
 
     new_root.extend(tl_logics)

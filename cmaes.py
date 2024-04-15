@@ -53,7 +53,7 @@ def fitness_func(solution, **kwargs):
     process = subprocess.Popen(command)
     process.wait()
     fitness_value = utils.get_total_waiting_time(output_file)
-    subprocess.run(['rm', additional_file, output_file])
+    subprocess.run(['rm', additional_file, output_file, updated_sumocfg])
     return fitness_value
 
 def main(argv):
