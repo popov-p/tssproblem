@@ -64,7 +64,7 @@ def fitness_func(ga_instance, solution, solution_idx, **kwargs): #specific argum
         fitness_counter.value += 1
     process.wait()
     fitness_value = utils.get_total_waiting_time(output_file)
-    subprocess.run(['rm', additional_file, output_file])
+    subprocess.run(['rm', additional_file, output_file, updated_sumocfg])
     return -fitness_value
 
 
@@ -77,7 +77,7 @@ def main(argv):
         gene_type = int
         gene_space = set_gene_space(utils.net_dict.get(simulation_name))
         generation_times = [time.time(), ]
-        num_generations = 80
+        num_generations = 400
         ff_wrapper = lambda ga_instance, solution, solution_idx: fitness_func(ga_instance, 
                                                                               solution, 
                                                                               solution_idx, 

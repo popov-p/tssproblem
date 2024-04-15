@@ -60,7 +60,7 @@ def evaluate_particle(particle, **kwargs):
         fitness_counter.value += 1
     process.wait()
     fitness_value = utils.get_total_waiting_time(output_file)
-    subprocess.run(['rm', additional_file, output_file])
+    subprocess.run(['rm', additional_file, output_file, updated_sumocfg])
     return fitness_value
 
 def fitness_func(swarm, **kwargs):
