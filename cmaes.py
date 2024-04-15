@@ -9,6 +9,7 @@ from functools import partial
 import time
 import os
 import csv
+
 #cmaes utils
 
 def create_bounds(xml_file):
@@ -61,7 +62,7 @@ def main(argv):
         print('Usage: python gen.py <simulation-folder-name (for example: "medium")>')
         sys.exit(1)
     else:
-        simulation_name = 'commercial' #argv[1]
+        simulation_name = 'commercial'
         #parameters preparation
         opts = create_bounds(xml_file=utils.net_dict.get(simulation_name))
         dimension = len(opts.get('bounds')[1])
@@ -93,7 +94,6 @@ def main(argv):
         current_dir = os.getcwd()
         table = f"{current_dir}/{simulation_name}/results/results.csv"
         
-        #header = ['name', 'xbest', 'fbest', 'iter-count', 'evals-all', 'sum-time', 'avg-iter-time']
         with open(table, 'a', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(('cmaes', simulation_name, np.round(es.result.xbest),
