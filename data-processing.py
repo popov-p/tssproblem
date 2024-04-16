@@ -6,6 +6,7 @@ import re
 import csv
 import numpy as np
 from itertools import zip_longest
+from datetime import datetime, timedelta
 
 parser = argparse.ArgumentParser(description='Process traffic demand')
 parser.add_argument('-d', type=str, default='datasets/current', help='path to directory with .xlsx data')
@@ -80,7 +81,7 @@ def process_for_dfrouter(df, filename, sorted_by_detector_dict):
         sorted_by_detector_dict[map_detector_id] = []
     sorted_by_detector_dict[map_detector_id].append(df_selected_renamed)
 
-def dfrouter_final(sorted_by_detector_dict):
+def dfrouter_final(sorted_by_detector_dict, total_boxplot_list):
     for_dfr_dir = args.dfr
     os.makedirs(for_dfr_dir, exist_ok=True)
 
@@ -90,9 +91,30 @@ def dfrouter_final(sorted_by_detector_dict):
         avg_qPKW = []
         avg_vPKW = []
         
+        unique_detectors = sorted_by_detector_dict[detector][0]['Detector'].unique().tolist() #d_6586_1
+        detectors_dict = {key: {'qPKW': None, 'vPKW': None} for key in unique_detectors}
+        day_count = 0
         for day in sorted_by_detector_dict[detector]:
+            day.fillna(0, inplace=True)
+            day_count +=1
+            pd.set_option('display.max_rows', None)  # Отобразить все строки
+            pd.set_option('display.max_columns', None)  
+            print(day_count)
+            print(day)
             total_qPKW = [x + y for x, y in zip_longest(total_qPKW, day['qPKW'].tolist(), fillvalue=0)]
             total_vPKW = [x + y for x, y in zip_longest(total_vPKW, day['vPKW'].tolist(), fillvalue=0)]
+            for key in unique_detectors:
+                filtered_qpkw = day.loc[day['Detector'] == key, 'qPKW'].tolist()
+                filtered_vpkw = day.loc[day['Detector'] == key, 'vPKW'].tolist()
+                if detectors_dict[key]['qPKW'] is None:
+                    detectors_dict[key]['qPKW'] = np.array(filtered_qpkw).reshape(-1, 1)
+                else:
+                    detectors_dict[key]['qPKW'] = np.concatenate((detectors_dict[key]['qPKW'], np.array(filtered_qpkw).reshape(-1, 1)), axis=1)
+##########################################
+                if detectors_dict[key]['vPKW'] is None:
+                    detectors_dict[key]['vPKW'] = np.array(filtered_vpkw).reshape(-1, 1)
+                else:
+                    detectors_dict[key]['vPKW'] = np.concatenate((detectors_dict[key]['vPKW'], np.array(filtered_vpkw).reshape(-1, 1)), axis=1)                    
 
         avg_qPKW += [int(x/(len(sorted_by_detector_dict[detector]))) for x in total_qPKW]
         avg_vPKW += [round(x/(len(sorted_by_detector_dict[detector])), 2) for x in total_vPKW]
@@ -107,6 +129,7 @@ def dfrouter_final(sorted_by_detector_dict):
         output_file = os.path.join(for_dfr_dir, f'dfrouter-mean-measures.csv') # 21-day-mean data for simulation
         write_header = not os.path.exists(output_file)
         output_df.to_csv(output_file, index=False, mode='a', header=write_header, sep=';')
+        total_boxplot_list.append(detectors_dict)
 
 
 def plot(mean_dict, plot_name):
@@ -127,10 +150,41 @@ def plot(mean_dict, plot_name):
     plt.tight_layout()
     plt.show()
 
+def plot_time_boxplots(total_boxplot_list):
+    start_time = datetime.strptime('06:00', '%H:%M')
+    end_time = datetime.strptime('09:00', '%H:%M')
+    step_minutes = 5
+
+    times = []
+
+    current_time = start_time
+    while current_time <= end_time:
+        times.append(current_time.strftime('%H:%M'))
+        current_time += timedelta(minutes=step_minutes)
+
+    posits=[i for i in range(37)]
+
+
+    for detector in total_boxplot_list:
+        for det_line_info in detector.keys():
+            _, det_id, line_id = det_line_info.split('_')
+            for metric in ['qPKW', 'vPKW']:
+                # Рисуем боксплоты на одних осях
+                plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
+
+                # Настройка осей и меток
+                plt.xticks(posits, times)
+                plt.xlabel('Боксплоты')
+                plt.ylabel('Volume, [машин/5минут]')
+                plt.title(f'detector-id:{det_id}, line-id: {line_id}, metric:{metric}')
+                # Отображаем график
+                plt.show()
+
 def main():
-    n = 20
+    n = 8
     
     sorted_by_detector_dict = {}
+    total_boxplot_list = []
     for filename in os.listdir(args.d):
         if filename.endswith('.xlsx'):
             file_path = os.path.join(args.d, filename)
@@ -142,8 +196,8 @@ def main():
             save_processed(first_n_days_data, 'proc_'+filename)
             save_processed_mean(time_stats, 'mean_'+filename)
 
-            print(time_stats)
-            print(first_n_days_data)
+            #print(time_stats)
+            #print(first_n_days_data)
             #plot(time_stats, filename)
 
 
@@ -151,7 +205,7 @@ def main():
                 process_for_dfrouter(group_data, filename=filename,sorted_by_detector_dict=sorted_by_detector_dict)
                 first_n_days_data.drop(group_data.index, inplace=True)
             
-    dfrouter_final(sorted_by_detector_dict=sorted_by_detector_dict)      
-
+    dfrouter_final(sorted_by_detector_dict=sorted_by_detector_dict, total_boxplot_list=total_boxplot_list)      
+    plot_time_boxplots(total_boxplot_list=total_boxplot_list)
 if __name__ == '__main__':
     main()
