@@ -29,8 +29,10 @@ while current_time <= end_time:
     times.append(current_time.strftime('%H:%M'))
     current_time += timedelta(minutes=step_minutes)
 
-times_dfr = [t for t in range(0, 301, 5)]
+times_dfr = [t for t in range(0, 181, 5)]
 
+weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday']
+weekends = ['Saturday', 'Sunday']
 
 def process_xlsx(file_path):
     df = pd.read_excel(file_path)
@@ -61,7 +63,10 @@ def filter(df):
 
 def sort_first_n_days(n, cur_df):
     filtered_df = filter(cur_df).sort_values(by=['Number', 'Time'])
-    #print(filtered_df)
+    filtered_df['WD'] = filtered_df['Time'].dt.day_name()
+    mask = filtered_df['WD'].isin(weekdays)
+    filtered_df = filtered_df[mask]
+    #print(filtered_df[mask])
     return filtered_df[filtered_df['Time'] < filtered_df['Time'].iloc[0] + pd.Timedelta(days=n)]
 
 def form_mean_stats(first_n_days_data):
@@ -113,8 +118,18 @@ def process_for_dfrouter(day, filename, sorted_by_detector_dict):
         #print(validated_line_df)
         day = pd.concat([day, validated_line_df], ignore_index=True).drop_duplicates().sort_index().sort_values(by=['Detector', 'Time']).reset_index(drop=True)
         #print(day)
- 
     #--------------
+    #TIME SETTING PART (to avoid warnings)
+    line_dfs = []
+    for det_line_id in unique_det_ids:
+        line_df = day[day['Detector'] == det_line_id].copy()
+        line_df.drop(columns=['Time'], inplace=True)
+        line_df.loc[:, 'Time'] = times_dfr
+        #print(line_df)
+        line_dfs.append(line_df.reindex(columns=['Detector', 'Time', 'qPKW', 'vPKW']))
+    day = pd.concat(line_dfs, ignore_index=True)
+    #print(day)
+    #------------
     if map_detector_id not in sorted_by_detector_dict:
         sorted_by_detector_dict[map_detector_id] = []
     sorted_by_detector_dict[map_detector_id].append(day)
@@ -185,7 +200,7 @@ def plot(mean_dict, plot_name):
 
 def plot_time_boxplots(total_boxplot_list):
     #posits=[i for i in range(37)]
-    posits= [i for i in range(20)]
+    posits= [i for i in range(12)]
 
     for detector in total_boxplot_list:
         for det_line_info in detector.keys():
@@ -197,13 +212,13 @@ def plot_time_boxplots(total_boxplot_list):
                 
                 #plt.xticks(posits, times)
                 plt.xlabel('Боксплоты')
-                plt.ylabel(f'Метрика{metric}')
-                plt.title(f'detector-id:{det_id}, line-id: {line_id}, metric:{metric}')
+                plt.ylabel(f'Метрика {metric}')
+                plt.title(f'detector-id: {det_id}, line-id: {line_id}, metric: {metric}')
                 
                 plt.show()
 
 def main():
-    n = 20
+    n = 21
     
     sorted_by_detector_dict = {}
     total_boxplot_list = []
@@ -213,7 +228,7 @@ def main():
             cur_df = process_xlsx(file_path)
             
             first_n_days_data = sort_first_n_days(n, cur_df=cur_df)
-            print(first_n_days_data)
+            #print(first_n_days_data)
             #time_stats = form_mean_stats(first_n_days_data=first_n_days_data)
             #save_processed(first_n_days_data, 'proc_'+filename)
             #save_processed_mean(time_stats, 'mean_'+filename)
@@ -229,6 +244,6 @@ def main():
                 #print(first_n_days_data)
             
     dfrouter_final(sorted_by_detector_dict=sorted_by_detector_dict, total_boxplot_list=total_boxplot_list)      
-    plot_time_boxplots(total_boxplot_list=total_boxplot_list)
+    #plot_time_boxplots(total_boxplot_list=total_boxplot_list)
 if __name__ == '__main__':
     main()
