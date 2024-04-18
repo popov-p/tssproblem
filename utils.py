@@ -69,11 +69,11 @@ def get_total_waiting_time(xml_file):
     root = tree.getroot()
 
     vehicle_trip_statistics = root.find(".//vehicleTripStatistics") # vehicleTripStatistics 
-    performance = root.find(".//performance")
+    #performance = root.find(".//performance")
 
     waitingTime = vehicle_trip_statistics.get('waitingTime')
-    end = performance.get('end')
-    return float(waitingTime)*float(end) # waitingTime
+    #end = performance.get('end')
+    return float(waitingTime) #*float(end) # waitingTime
 
 def generate_id():
     unique_id = str(uuid.uuid4())
