@@ -24,7 +24,7 @@ def set_gene_space(xml_file): #function to define boundaries for genes in chromo
     for tl_logic in root.findall(".//tlLogic"):
         for phase in tl_logic.findall("phase"):
             if "y" not in phase.attrib["state"]: #if current light phase is not yellow - optimize it 
-                gene_space.append({'low': 30, 'high': 60})
+                gene_space.append({'low': 20, 'high': 70})
     return gene_space
 #-------------
 def on_generation(ga_instance, **kwargs):
@@ -59,12 +59,25 @@ def fitness_func(ga_instance, solution, solution_idx, **kwargs): #specific argum
     ]
 
     #----------------------
+    start_time = time.time()
+    fitness_value = None
     process = subprocess.Popen(command)
     with lock:
         fitness_counter.value += 1
+    while True:
+        return_code = process.poll()
+        if return_code is not None:
+            fitness_value = utils.get_total_waiting_time(output_file)
+            subprocess.run(['rm', additional_file, output_file, updated_sumocfg])
+            break
+        if time.time() - start_time > 5:
+            process.terminate()
+            fitness_value = 1e6
+            subprocess.run(['rm', additional_file, output_file, updated_sumocfg])
+            print("COMPUTATIONAL TIME EXCEEDED. EXITING...")
+            break
+        time.sleep(1)
     process.wait()
-    fitness_value = utils.get_total_waiting_time(output_file)
-    subprocess.run(['rm', additional_file, output_file, updated_sumocfg])
     return -fitness_value
 
 
@@ -77,7 +90,7 @@ def main(argv):
         gene_type = int
         gene_space = set_gene_space(utils.net_dict.get(simulation_name))
         generation_times = [time.time(), ]
-        num_generations = 80
+        num_generations = 400
         ff_wrapper = lambda ga_instance, solution, solution_idx: fitness_func(ga_instance, 
                                                                               solution, 
                                                                               solution_idx, 
@@ -89,9 +102,9 @@ def main(argv):
                                                        folder_name=simulation_name,
                                                        times=generation_times)
         ga_instance = pygad.GA(num_generations=num_generations,
-                                num_parents_mating=8, 
+                                num_parents_mating=24, 
                                 fitness_func=ff_wrapper,
-                                sol_per_pop=16,
+                                sol_per_pop=48,
                                 num_genes=len(gene_space),
                                 gene_space=gene_space,
                                 gene_type=gene_type,

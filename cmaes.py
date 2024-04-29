@@ -22,8 +22,8 @@ def create_bounds(xml_file):
     for tl_logic in root.findall(".//tlLogic"):
         for phase in tl_logic.findall("phase"):
             if "y" not in phase.attrib["state"]:
-                lower_bounds.extend([30])
-                upper_bounds.extend([60])
+                lower_bounds.extend([20])
+                upper_bounds.extend([70])
 
     bounds_dict = {'bounds': [lower_bounds, upper_bounds]}
     return bounds_dict
@@ -68,11 +68,12 @@ def main(argv):
         dimension = len(opts.get('bounds')[1])
 
         opts['AdaptSigma'] = cma.sigma_adaptation.CMAAdaptSigmaTPA
-        x0 = np.random.uniform(low=opts.get('bounds')[0], high=opts.get('bounds')[1], size=dimension)
+        #x0 = np.random.uniform(low=opts.get('bounds')[0], high=opts.get('bounds')[1], size=dimension)
+        x0 = np.array([28,26,20,29,23,21])
         sigma = 5
         #----------------------
         es = cma.CMAEvolutionStrategy(x0, sigma, opts)
-        iter_count = 120
+        iter_count = 400
         ff_partial = partial(fitness_func,
                              net_file=utils.net_dict.get(simulation_name),
                              folder_name=simulation_name,
@@ -81,7 +82,7 @@ def main(argv):
         iter_times = [time.time(),]
         cost_history = []
         #-------------------------------
-        with ProcessPoolExecutor(15) as executor:
+        with ProcessPoolExecutor(13) as executor:
             for _ in range(iter_count):
                 solutions = es.ask()
                 fitness_values = list(executor.map(ff_partial, solutions))

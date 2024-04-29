@@ -142,8 +142,6 @@ def process_for_dfrouter(day, filename, sorted_by_detector_dict):
         line_df.loc[:, 'Time'] = times_dfr
         line_dfs.append(line_df.reindex(columns=['Detector', 'Time', 'qPKW', 'vPKW']))
     day = pd.concat(line_dfs, ignore_index=True)
-    print(unique_date)
-    print(day)
     #------------
     if map_detector_id not in sorted_by_detector_dict:
         sorted_by_detector_dict[map_detector_id] = []
@@ -248,17 +246,14 @@ def main():
             save_processed(first_n_days_data, 'proc_'+filename)
             #save_processed_mean(time_stats, 'mean_'+filename)
 
-            #print(time_stats)
-            #print(first_n_days_data)
             #plot(time_stats, filename)
 
 
             for date, group_data in first_n_days_data.groupby(pd.to_datetime(first_n_days_data['Time']).dt.date):
                 process_for_dfrouter(day=group_data, filename=filename,sorted_by_detector_dict=sorted_by_detector_dict)
                 first_n_days_data.drop(group_data.index, inplace=True)
-                #print(first_n_days_data)
             
     dfrouter_final(sorted_by_detector_dict=sorted_by_detector_dict, total_boxplot_list=total_boxplot_list)      
-    plot_time_boxplots(total_boxplot_list=total_boxplot_list)
+    #plot_time_boxplots(total_boxplot_list=total_boxplot_list)
 if __name__ == '__main__':
     main()
