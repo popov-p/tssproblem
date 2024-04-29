@@ -212,18 +212,18 @@ def plot(mean_dict, plot_name):
     plt.show()
 
 def plot_time_boxplots(total_boxplot_list):
-    posits=[i for i in range(37)] #time measures
-    #posits= [i for i in range(15)] #days count
+    #posits=[i for i in range(37)] #time measures
+    posits= [i for i in range(15)] #days count
 
     for detector in total_boxplot_list:
         for det_line_info in detector.keys():
             _, det_id, line_id = det_line_info.split('_')
             for metric in ['qPKW', 'vPKW']:
                 
-                plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
-                #plt.boxplot([detector[det_line_info][metric][:, i] for i in range(detector[det_line_info][metric].shape[1])], positions=posits)
+                #plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
+                plt.boxplot([detector[det_line_info][metric][:, i] for i in range(detector[det_line_info][metric].shape[1])], positions=posits)
                 
-                plt.xticks(posits, times)
+                #plt.xticks(posits, times)
                 plt.xlabel('Боксплоты')
                 plt.ylabel(f'Метрика {metric}')
                 plt.title(f'detector-id: {det_id}, line-id: {line_id}, metric: {metric}')
@@ -254,6 +254,6 @@ def main():
                 first_n_days_data.drop(group_data.index, inplace=True)
             
     dfrouter_final(sorted_by_detector_dict=sorted_by_detector_dict, total_boxplot_list=total_boxplot_list)      
-    #plot_time_boxplots(total_boxplot_list=total_boxplot_list)
+    plot_time_boxplots(total_boxplot_list=total_boxplot_list)
 if __name__ == '__main__':
     main()
