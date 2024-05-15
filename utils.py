@@ -36,6 +36,7 @@ net_dict = {
 
 #simulation args
 time_to_teleport = str(-1)
+first_simulation_step = str(7200)
 last_simulation_step = str(10800)
 collision_mingap_factor = str(-1)
 default_carfollowmodel = 'IDM'
