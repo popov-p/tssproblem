@@ -90,7 +90,7 @@ def main(argv):
         gene_type = int
         gene_space = set_gene_space(utils.net_dict.get(simulation_name))
         generation_times = [time.time(), ]
-        num_generations = 400
+        num_generations = 75
         ff_wrapper = lambda ga_instance, solution, solution_idx: fitness_func(ga_instance, 
                                                                               solution, 
                                                                               solution_idx, 

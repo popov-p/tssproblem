@@ -93,9 +93,9 @@ def main(argv):
         swarm_times = [time.time(), ]
         lower_bounds, upper_bounds = create_bounds(utils.net_dict.get(simulation_name))
         num_variables = len(lower_bounds)
-        options = {'c1': 2.05, 'c2': 2.05, 'w': 0.72984} #global-best-pso 
-        iters = 400
-        optimizer = ps.single.GlobalBestPSO(n_particles=30, dimensions=num_variables, options=options, oh_strategy={ "w":'exp_decay', "c1":'nonlin_mod',"c2":'lin_variation'}, bounds=(lower_bounds, upper_bounds))
+        options = {'c1': 0.5069, 'c2': 2.5524, 'w': 1.0055} #global-best-pso 
+        iters = 50
+        optimizer = ps.single.GlobalBestPSO(n_particles=203, dimensions=num_variables, options=options, oh_strategy={ "w":'exp_decay', "c1":'nonlin_mod',"c2":'lin_variation'}, bounds=(lower_bounds, upper_bounds))
         ff_wrapper = lambda swarm: fitness_func(swarm=swarm, 
                                                 net_file=utils.net_dict.get(simulation_name), 
                                                 folder_name=simulation_name,

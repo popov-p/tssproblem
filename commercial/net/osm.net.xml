@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-05-15 00:23:27 by Eclipse SUMO netedit Version 1.19.0
+<!-- generated on 2024-05-15 20:49:57 by Eclipse SUMO netedit Version 1.19.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
-        <additional-files value="/home/pavel/dev/tssproblem/commercial/dfrouter/detectors.add.xml"/>
         <sumo-net-file value="/home/pavel/dev/tssproblem/commercial/net/osm.net.xml"/>
     </input>
 
