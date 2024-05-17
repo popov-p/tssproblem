@@ -1,13 +1,21 @@
 \chapter{Результаты работы} \label{ch4}
-
-% не рекомендуется использовать отдельную section <<введение>> после лета 2020 года
-%\section{Введение} \label{ch4:intro}
+Предлагается построить симуляцию на основании реально существующего участка дороги в г. Москве.
 	
-\section{Название параграфа} \label{ch4:sec1}
+\section{Анализ входных данных} \label{ch4:sec1}
+\subsection{Карта исследуемого участка дороги}
+\input{my_folder/tex/radiodetectors-map}
+\newpage
+\input{my_folder/tex/sumo-gui-roadmap}
 
-\section{Название параграфа} \label{ch4:sec2}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[height=0.2\textheight,valign=t]{my_folder/images//detectors-setting.png}
+	\captionsetup{justification=centering} %центрировать
+	\caption{Расстановка детекторов на карте} \label{fig:detectors-setting}
+\end{figure}
+Место установки детекторов на \firef{fig:detectors-setting}
+\subsection{Состояния СО в соответствии с паспортом}
 
-Пример ссылки на литературу \cite{avtonomova:fya,Peskov2004-ru,Kotelnikov2004-ru,Kotelnikov2004}.
 
 %\FloatBarrier % заставить рисунки и другие подвижные (float) элементы остановиться
 
