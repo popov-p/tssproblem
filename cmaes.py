@@ -21,7 +21,7 @@ def create_bounds(xml_file):
 
     for tl_logic in root.findall(".//tlLogic"):
         for phase in tl_logic.findall("phase"):
-            if "y" not in phase.attrib["state"]:
+            if ("y" not in phase.attrib["state"]) and not(all(char == "r" for char in phase.attrib["state"])):
                 lower_bounds.extend([20])
                 upper_bounds.extend([70])
 
@@ -74,7 +74,7 @@ def main(argv):
         sigma = 5
         #----------------------
         es = cma.CMAEvolutionStrategy(x0, sigma, opts)
-        iter_count = 200
+        iter_count = 125
         ff_partial = partial(fitness_func,
                              net_file=utils.net_dict.get(simulation_name),
                              folder_name=simulation_name,

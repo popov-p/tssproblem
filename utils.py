@@ -56,12 +56,14 @@ def create_new_logic(net_input, additional_output, solution):
 
     for tl_logic in tl_logics:
         for phase in tl_logic.findall('.//phase'):
-            if "y" not in phase.attrib["state"]: #if phase is "optimizable"
+            if ("y" not in phase.attrib["state"]) and not(all(char == "r" for char in phase.attrib["state"])): #if phase is "optimizable"
                 duration = int(solution[0])
                 solution = np.delete(solution, 0)
                 phase.set('duration', str(duration))
-            else: #yellow constant 3
+            elif "y" in phase.attrib["state"]: #yellow constant 3 s
                 phase.set('duration', str(3))
+            else: #pedestrian phase, set const 24 s according to a traffic light docs
+                phase.set('duration', str(24))
         tl_logic.set('programID', 'generated')
 
     new_root.extend(tl_logics)
@@ -74,11 +76,11 @@ def get_total_waiting_time(xml_file):
     root = tree.getroot()
 
     vehicle_trip_statistics = root.find(".//vehicleTripStatistics") 
-    performance = root.find(".//performance")
+    #performance = root.find(".//performance")
 
     waitingTime = vehicle_trip_statistics.get('waitingTime')
-    end = performance.get('end')
-    return float(waitingTime)*float(end) # waitingTime
+    #end = performance.get('end')
+    return float(waitingTime)#*float(end) # waitingTime
 
 def generate_id():
     unique_id = str(uuid.uuid4())
