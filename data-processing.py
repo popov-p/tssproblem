@@ -97,7 +97,7 @@ def form_mean_stats(first_n_days_data):
     grouped = first_n_days_data.groupby(first_n_days_data['Time'].dt.strftime('%H:%M'))
     for group_name, group_data in grouped:
         avg_volume = group_data['Volume'].sum() / len(group_data['Time'].dt.date.unique())
-        time_stats[group_name] = int(avg_volume)
+        time_stats[group_name] = int(int(avg_volume) / 12)
     return time_stats
 
 def extract_number(filename):
@@ -205,25 +205,25 @@ def plot(mean_dict, plot_name):
 
     plt.figure(figsize=(10, 6))
     plt.boxplot(mean_dict.values())
-    plt.title('Boxplot of Volume per Time Interval')
-    plt.xlabel('Time Interval')
+    plt.title('Boxplot of Volume per Time Interval, detector: ' + str(extract_number(plot_name)))
+    plt.xlabel('-')
     plt.ylabel('Volume')
     plt.tight_layout()
     plt.show()
 
 def plot_time_boxplots(total_boxplot_list):
-    #posits=[i for i in range(37)] #time measures
-    posits= [i for i in range(15)] #days count
+    posits=[i for i in range(37)] #time measures
+    #posits= [i for i in range(15)] #days count
 
     for detector in total_boxplot_list:
         for det_line_info in detector.keys():
             _, det_id, line_id = det_line_info.split('_')
             for metric in ['qPKW', 'vPKW']:
                 
-                #plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
-                plt.boxplot([detector[det_line_info][metric][:, i] for i in range(detector[det_line_info][metric].shape[1])], positions=posits)
+                plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
+                #plt.boxplot([detector[det_line_info][metric][:, i] for i in range(detector[det_line_info][metric].shape[1])], positions=posits)
                 
-                #plt.xticks(posits, times)
+                plt.xticks(posits, times)
                 plt.xlabel('Боксплоты')
                 plt.ylabel(f'Метрика {metric}')
                 plt.title(f'detector-id: {det_id}, line-id: {line_id}, metric: {metric}')
@@ -242,7 +242,7 @@ def main():
             
             first_n_days_data = sort_first_n_days(n, cur_df=cur_df)
             #print(first_n_days_data)
-            #time_stats = form_mean_stats(first_n_days_data=first_n_days_data)
+            time_stats = form_mean_stats(first_n_days_data=first_n_days_data)
             save_processed(first_n_days_data, 'proc_'+filename)
             #save_processed_mean(time_stats, 'mean_'+filename)
 
@@ -254,6 +254,6 @@ def main():
                 first_n_days_data.drop(group_data.index, inplace=True)
             
     dfrouter_final(sorted_by_detector_dict=sorted_by_detector_dict, total_boxplot_list=total_boxplot_list)      
-    plot_time_boxplots(total_boxplot_list=total_boxplot_list)
+    #plot_time_boxplots(total_boxplot_list=total_boxplot_list)
 if __name__ == '__main__':
     main()
