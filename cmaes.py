@@ -46,7 +46,7 @@ def fitness_func(solution, **kwargs):
         '--no-warnings', 't',
         '--no-step-log', 't',
         '--quit-on-end', 't',
-        '-b', utils.first_simulation_step,
+        #'-b', utils.first_simulation_step,
         #'-e', utils.last_simulation_step,
         '--default.carfollowmodel', utils.default_carfollowmodel,
         '--collision.mingap-factor', utils.collision_mingap_factor,
@@ -74,7 +74,7 @@ def main(argv):
         sigma = 5
         #----------------------
         es = cma.CMAEvolutionStrategy(x0, sigma, opts)
-        iter_count = 125
+        iter_count = 250
         ff_partial = partial(fitness_func,
                              net_file=utils.net_dict.get(simulation_name),
                              folder_name=simulation_name,

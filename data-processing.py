@@ -92,7 +92,7 @@ def sort_first_n_days(n, cur_df):
 
     return filtered_df[filtered_df['Time'] < filtered_df['Time'].iloc[0] + pd.Timedelta(days=n)]
 
-def form_mean_stats(first_n_days_data):
+def form_mean_stats(first_n_days_data):#correct
     time_stats = {}
     grouped = first_n_days_data.groupby(first_n_days_data['Time'].dt.strftime('%H:%M'))
     for group_name, group_data in grouped:
@@ -212,21 +212,22 @@ def plot(mean_dict, plot_name):
     plt.show()
 
 def plot_time_boxplots(total_boxplot_list):
+    annotations = {'qPKW': 'Volume', 'vPKW': 'Speed'}
     posits=[i for i in range(37)] #time measures
     #posits= [i for i in range(15)] #days count
-
+    posits = [1, 2, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 19, 20, 21]
     for detector in total_boxplot_list:
         for det_line_info in detector.keys():
             _, det_id, line_id = det_line_info.split('_')
             for metric in ['qPKW', 'vPKW']:
                 
-                plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
-                #plt.boxplot([detector[det_line_info][metric][:, i] for i in range(detector[det_line_info][metric].shape[1])], positions=posits)
+                #plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
+                plt.boxplot([detector[det_line_info][metric][:, i] for i in range(detector[det_line_info][metric].shape[1])], positions=posits)
                 
-                plt.xticks(posits, times)
+                #plt.xticks(posits, times)
                 plt.xlabel('Боксплоты')
-                plt.ylabel(f'Метрика {metric}')
-                plt.title(f'detector-id: {det_id}, line-id: {line_id}, metric: {metric}')
+                plt.ylabel(annotations[metric])
+                plt.title(f'detector-id: {det_id}, line-id: {line_id}, metric: {annotations[metric]}')
                 
                 plt.show()
 
@@ -254,6 +255,6 @@ def main():
                 first_n_days_data.drop(group_data.index, inplace=True)
             
     dfrouter_final(sorted_by_detector_dict=sorted_by_detector_dict, total_boxplot_list=total_boxplot_list)      
-    #plot_time_boxplots(total_boxplot_list=total_boxplot_list)
+    plot_time_boxplots(total_boxplot_list=total_boxplot_list)
 if __name__ == '__main__':
     main()
