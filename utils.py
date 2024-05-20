@@ -123,7 +123,8 @@ def is_started_with_sudo():
 
 def histogram():
     # Lists to store data
-    alg_names = []
+    alg_names = ['CMA-ES', 'ГА', 'МРЧ']
+    
     evals_all = []
     sum_times = []
     # Read data from CSV file
@@ -145,14 +146,14 @@ def histogram():
     plt.bar(total_evals.keys(), total_evals.values(), alpha=0.5)
     plt.xlabel('Algorithm name')
     plt.ylabel('Total evaluations')
-    plt.title('Total evaluations: commercial')
+    plt.title('Total evaluations')
     plt.grid(True)
 
     plt.figure()
     plt.bar(total_times.keys(), total_times.values(), alpha=0.5)
     plt.xlabel('Algorithm name')
     plt.ylabel('Total time (s)')
-    plt.title('Total times: commercial')
+    plt.title('Total times')
     plt.grid(True)
 plt.show()
 

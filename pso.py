@@ -25,7 +25,7 @@ def create_bounds(xml_file):
 
     for tl_logic in root.findall(".//tlLogic"):
         for phase in tl_logic.findall("phase"):
-            if "y" not in phase.attrib["state"]:
+            if ("y" not in phase.attrib["state"]) and not(all(char == "r" for char in phase.attrib["state"])):
                 lower_bounds.extend([20])
                 upper_bounds.extend([70])
 
@@ -49,7 +49,7 @@ def evaluate_particle(particle, **kwargs):
         '--no-warnings', 't',
         '--no-step-log', 't',
         '--quit-on-end', 't',
-        #'-e', utils.last_simulation_step,
+        '-e', utils.last_simulation_step,
         '--default.carfollowmodel', utils.default_carfollowmodel,
         '--collision.mingap-factor', utils.collision_mingap_factor
     ]
@@ -78,7 +78,7 @@ def evaluate_particle(particle, **kwargs):
 def fitness_func(swarm, **kwargs):
     times = kwargs.get('times')
     partial_evaluate_particle = partial(evaluate_particle, **kwargs)
-    with ProcessPoolExecutor(12) as executor:
+    with ProcessPoolExecutor(13) as executor:
         fitness_values = list(executor.map(partial_evaluate_particle, swarm))
     cur_swarm_time = time.time()
     times.append(cur_swarm_time) #current swarm time logging 
@@ -93,8 +93,8 @@ def main(argv):
         swarm_times = [time.time(), ]
         lower_bounds, upper_bounds = create_bounds(utils.net_dict.get(simulation_name))
         num_variables = len(lower_bounds)
-        options = {'c1': 0.5069, 'c2': 2.5524, 'w': 1.0055} #global-best-pso 
-        iters = 50
+        options = {'c1': 0.5069, 'c2': 2.5524, 'w': 1.0056} #global-best-pso 
+        iters = 100
         optimizer = ps.single.GlobalBestPSO(n_particles=203, dimensions=num_variables, options=options, oh_strategy={ "w":'exp_decay', "c1":'nonlin_mod',"c2":'lin_variation'}, bounds=(lower_bounds, upper_bounds))
         ff_wrapper = lambda swarm: fitness_func(swarm=swarm, 
                                                 net_file=utils.net_dict.get(simulation_name), 

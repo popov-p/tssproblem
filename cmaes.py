@@ -47,7 +47,7 @@ def fitness_func(solution, **kwargs):
         '--no-step-log', 't',
         '--quit-on-end', 't',
         #'-b', utils.first_simulation_step,
-        #'-e', utils.last_simulation_step,
+        '-e', utils.last_simulation_step,
         '--default.carfollowmodel', utils.default_carfollowmodel,
         '--collision.mingap-factor', utils.collision_mingap_factor,
     ]
@@ -68,13 +68,13 @@ def main(argv):
         opts = create_bounds(xml_file=utils.net_dict.get(simulation_name))
         dimension = len(opts.get('bounds')[1])
 
-        opts['AdaptSigma'] = cma.sigma_adaptation.CMAAdaptSigmaCSA
+        opts['AdaptSigma'] = cma.sigma_adaptation.CMAAdaptSigmaTPA
         #x0 = np.random.uniform(low=opts.get('bounds')[0], high=opts.get('bounds')[1], size=dimension)
         x0 = np.array([65,35,20,40,22,34])
         sigma = 5
         #----------------------
         es = cma.CMAEvolutionStrategy(x0, sigma, opts)
-        iter_count = 250
+        iter_count = 100
         ff_partial = partial(fitness_func,
                              net_file=utils.net_dict.get(simulation_name),
                              folder_name=simulation_name,
@@ -83,7 +83,7 @@ def main(argv):
         iter_times = [time.time(),]
         cost_history = []
         #-------------------------------
-        with ProcessPoolExecutor(15) as executor:
+        with ProcessPoolExecutor(14) as executor:
             for _ in range(iter_count):
                 solutions = es.ask()
                 fitness_values = list(executor.map(ff_partial, solutions))

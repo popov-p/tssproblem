@@ -23,7 +23,7 @@ def set_gene_space(xml_file): #function to define boundaries for genes in chromo
 
     for tl_logic in root.findall(".//tlLogic"):
         for phase in tl_logic.findall("phase"):
-            if "y" not in phase.attrib["state"]: #if current light phase is not yellow - optimize it 
+            if ("y" not in phase.attrib["state"]) and not(all(char == "r" for char in phase.attrib["state"])):
                 gene_space.append({'low': 20, 'high': 70})
     return gene_space
 #-------------
@@ -53,7 +53,7 @@ def fitness_func(ga_instance, solution, solution_idx, **kwargs): #specific argum
         '--no-warnings', 't',
         '--no-step-log', 't',
         '--quit-on-end', 't',
-        #'-e', utils.last_simulation_step,
+        '-e', utils.last_simulation_step,
         '--default.carfollowmodel', utils.default_carfollowmodel,
         '--collision.mingap-factor', utils.collision_mingap_factor
     ]
@@ -90,7 +90,7 @@ def main(argv):
         gene_type = int
         gene_space = set_gene_space(utils.net_dict.get(simulation_name))
         generation_times = [time.time(), ]
-        num_generations = 75
+        num_generations = 100
         ff_wrapper = lambda ga_instance, solution, solution_idx: fitness_func(ga_instance, 
                                                                               solution, 
                                                                               solution_idx, 
@@ -102,14 +102,16 @@ def main(argv):
                                                        folder_name=simulation_name,
                                                        times=generation_times)
         ga_instance = pygad.GA(num_generations=num_generations,
-                                num_parents_mating=24, 
+                                num_parents_mating=32, 
                                 fitness_func=ff_wrapper,
-                                sol_per_pop=48,
+                                sol_per_pop=64,
                                 num_genes=len(gene_space),
                                 gene_space=gene_space,
                                 gene_type=gene_type,
-                                parallel_processing=15,
+                                parallel_processing=14,
                                 save_best_solutions=True,
+                                mutation_type = "random",
+                                mutation_percent_genes = 10,
                                 on_generation=og_wrapper
                                 )
         ga_instance.run()
