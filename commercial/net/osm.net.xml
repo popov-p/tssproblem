@@ -253,21 +253,21 @@
     </edge>
 
     <tlLogic id="linked_0" type="static" programID="0" offset="0">
-        <phase duration="65" state="GGGGGGrrrGGrrGGrrrrrrGG"/>
+        <phase duration="51" state="GGGGGGrrrGGrrGGrrrrrrGG"/>
         <phase duration="3"  state="GGyyyyrrryyrrGGrrrrrryy"/>
-        <phase duration="35" state="GGrrrrGrrrrGGGGGGGGrrrr"/>
+        <phase duration="37" state="GGrrrrGrrrrGGGGGGGGrrrr"/>
         <phase duration="3"  state="yyrrrryrrrryyyyyyyyrrrr"/>
-        <phase duration="20" state="GGGGrrGGGGGrrrrrrGGGGrr"/>
+        <phase duration="30" state="GGGGrrGGGGGrrrrrrGGGGrr"/>
         <phase duration="3"  state="yyyyrryyyyyrrrrrryyyyrr"/>
         <phase duration="24" state="rrrrrrrrrrrrrrrrrrrrrrr"/>
     </tlLogic>
     <tlLogic id="separate_0" type="static" programID="0" offset="0">
-        <phase duration="40" state="GGrrrGGGGGrrrGr"/>
+        <phase duration="42" state="GGrrrGGGGGrrrGr"/>
         <phase duration="3"  state="GGrrryyyGGrrryr"/>
-        <phase duration="22" state="GGGGGrrrGGGGGrr"/>
+        <phase duration="39" state="GGGGGrrrGGGGGrr"/>
         <phase duration="3"  state="yyyyyrrryyyyyrr"/>
         <phase duration="24" state="rrrrrrrrrrrrrrr"/>
-        <phase duration="34" state="GGrrrrrrGGrrrGG"/>
+        <phase duration="37" state="GGrrrrrrGGrrrGG"/>
         <phase duration="3"  state="GGrrrrrrGGrrrGy"/>
     </tlLogic>
 

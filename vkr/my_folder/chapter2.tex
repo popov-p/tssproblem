@@ -40,7 +40,7 @@
 \end{itemize}
 под $I$ понимается номер текущей итерации, $I_{\max}$ - максимальное кол-во итераций.
 \subsection{Рекомендуемые начальные значения}
-В зависимости от размерности $k$ частиц автор (...) предлагает установить начальные значения $S, n, \varphi_{p_{0}}, \varphi_{g_{0}}$.
+В зависимости от размерности $k$ частиц предлагается установить оптимальные начальные значения $S, n, \varphi_{p_{0}}, \varphi_{g_{0}}$.
 Они приведены в таблице ниже \ref{tab:tab-pso-opt-params}:
 \input{my_folder/tex/tab-pso-opt-params}
 \newpage
@@ -62,13 +62,13 @@
 	\item $h_\sigma$ - функция Хевисайда.
 	\item $\delta(h_{\sigma}) -$ параметр малозначимости.
 \end{itemize}
-Формулы для подсчёта $\omega_i, c_c, c_\sigma, c_1, c_\mu$ - представлены в статье (...).
+Формулы для подсчёта $\omega_i, c_c, c_\sigma, c_1, c_\mu$ - представлены в статье \cite{HansenCmaes}.
 \subsection{Псевдокод алгоритма CMA-ES}
 \input{my_folder/tex/pseudocode-cmaes}
 \clearpage
 \newpage
 \section{Модель разумного водителя}
-Движение транспортного потока в реализации модели базируется на модели М. Трайбера "разумного водителя" (Intelligent Driver Model, IDM):
+Движение транспортного потока в реализации модели базируется на модели М. Трайбера "разумного водителя" (Intelligent Driver Model, IDM) \cite{book-Gasnikov}:
 \begin{equation}
 	s_{n}^{''}(t) = F(s_{n+1}(t) - s_{n}(t), s_{n+1}^{'}(t), s_{n}^{'}(t))
 \end{equation}

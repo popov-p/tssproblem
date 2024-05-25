@@ -196,16 +196,16 @@ def dfrouter_final(sorted_by_detector_dict, total_boxplot_list):
 def plot(mean_dict, plot_name):
     plt.figure(figsize=(10, 6))
     plt.bar(mean_dict.keys(), mean_dict.values(), color='skyblue')
-    plt.title('Average Volume per Time Interval, detector: ' + str(extract_number(plot_name)))
-    plt.xlabel('Time Interval')
-    plt.ylabel('Average Volume')
+    plt.title('Средний показатель Volume по временным интервалам, детектор №: ' + str(extract_number(plot_name)))
+    plt.xlabel('Временные интервалы')
+    plt.ylabel('Средний показатель Volume')
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.show()
 
     plt.figure(figsize=(10, 6))
     plt.boxplot(mean_dict.values())
-    plt.title('Boxplot of Volume per Time Interval, detector: ' + str(extract_number(plot_name)))
+    plt.title('Боксплот гистограммы Volume, детектор №: ' + str(extract_number(plot_name)))
     plt.xlabel('-')
     plt.ylabel('Volume')
     plt.tight_layout()
@@ -215,19 +215,19 @@ def plot_time_boxplots(total_boxplot_list):
     annotations = {'qPKW': 'Volume', 'vPKW': 'Speed'}
     posits=[i for i in range(37)] #time measures
     #posits= [i for i in range(15)] #days count
-    posits = [1, 2, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 19, 20, 21]
+    #posits = [1, 2, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 19, 20, 21]
     for detector in total_boxplot_list:
         for det_line_info in detector.keys():
             _, det_id, line_id = det_line_info.split('_')
             for metric in ['qPKW', 'vPKW']:
                 
-                #plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
-                plt.boxplot([detector[det_line_info][metric][:, i] for i in range(detector[det_line_info][metric].shape[1])], positions=posits)
+                plt.boxplot([detector[det_line_info][metric][i] for i in range(detector[det_line_info][metric].shape[0])], positions=posits)
+                #plt.boxplot([detector[det_line_info][metric][:, i] for i in range(detector[det_line_info][metric].shape[1])], positions=posits)
                 
-                #plt.xticks(posits, times)
+                plt.xticks(posits, times)
                 plt.xlabel('Боксплоты')
                 plt.ylabel(annotations[metric])
-                plt.title(f'detector-id: {det_id}, line-id: {line_id}, metric: {annotations[metric]}')
+                plt.title(f'№ детектора: {det_id}, № линии: {line_id}, Метрика: {annotations[metric]}')
                 
                 plt.show()
 
@@ -245,7 +245,7 @@ def main():
             #print(first_n_days_data)
             time_stats = form_mean_stats(first_n_days_data=first_n_days_data)
             save_processed(first_n_days_data, 'proc_'+filename)
-            #save_processed_mean(time_stats, 'mean_'+filename)
+            save_processed_mean(time_stats, 'mean_'+filename)
 
             #plot(time_stats, filename)
 
@@ -255,6 +255,6 @@ def main():
                 first_n_days_data.drop(group_data.index, inplace=True)
             
     dfrouter_final(sorted_by_detector_dict=sorted_by_detector_dict, total_boxplot_list=total_boxplot_list)      
-    plot_time_boxplots(total_boxplot_list=total_boxplot_list)
+    #plot_time_boxplots(total_boxplot_list=total_boxplot_list)
 if __name__ == '__main__':
     main()
