@@ -90,7 +90,7 @@ def main(argv):
         gene_type = int
         gene_space = set_gene_space(utils.net_dict.get(simulation_name))
         generation_times = [time.time(), ]
-        num_generations = 200
+        num_generations = 100
         ff_wrapper = lambda ga_instance, solution, solution_idx: fitness_func(ga_instance, 
                                                                               solution, 
                                                                               solution_idx, 
@@ -102,13 +102,13 @@ def main(argv):
                                                        folder_name=simulation_name,
                                                        times=generation_times)
         ga_instance = pygad.GA(num_generations=num_generations,
-                                num_parents_mating=24, 
+                                num_parents_mating=32, 
                                 fitness_func=ff_wrapper,
-                                sol_per_pop=48,
+                                sol_per_pop=64,
                                 num_genes=len(gene_space),
                                 gene_space=gene_space,
                                 gene_type=gene_type,
-                                parallel_processing=14,
+                                parallel_processing=12,
                                 save_best_solutions=True,
                                 mutation_type = "random",
                                 mutation_percent_genes = 10,

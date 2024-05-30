@@ -3,7 +3,7 @@
 	\SetKwProg{myalg}{Algorithm}{}{} %write in 2nd agrument <<Algorithm>>, <<Procedure>> etc
 	\nonl\myalg{\algoDTestsFDSCALING}{
 		\KwInput{
-			Установить параметры $\lambda, \omega_{i = 1\ldots \lambda}, c_m, c_\sigma, d_{\sigma}, c_c, c_1$ и $c_\mu$ по таблице из \cite{HansenCmaes}
+			Установить параметры $\lambda, \omega_{i = 1\ldots \lambda}, c_m, c_\sigma, d_{\sigma}, c_c, c_1$ и $c_\mu$ по таблице из \cite{HansenCmaes}, а также подобрать $X_0$ - начальное приближение.
 		} 
 		\KwOutput{Оптимальное значение $f(X_{*})$.} 
 		Инициализировать эволюционные пути $p_\sigma = 0, p_c = 0$, матрицу ковариаций $C = I$, счётчик итераций $g=0$\;

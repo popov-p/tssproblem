@@ -92,6 +92,7 @@ def dump_data(output_path, row):
         csv_writer.writerow(row)
 
 def plot(simulation_name, plot_name):
+    annotations = {'gen': 'ГЕН', 'pso': 'МРЧ', 'cmaes': 'CMA-ES'}
     if plot_name == ch_iter_time:
         csv_data_list = []
         fig, ax = plt.subplots(2, 1, figsize=(8, 6))
@@ -103,13 +104,13 @@ def plot(simulation_name, plot_name):
             df.columns = [ch, iterations, time]
             csv_data_list.append(df)
 
-            ax[0].plot(df['iter'], df['ch'], label= f'{alg_name}')
+            ax[0].plot(df['iter'], df['ch'], label= f'{annotations[alg_name]}')
             ax[0].set_title('История значений ЦФ по итерациям')
             ax[0].set_xlabel('Итерации')
             ax[0].set_ylabel('Значения ЦФ')
             ax[0].legend()
 
-            ax[1].plot(df['iter'], df['time'], label= f'{alg_name}')
+            ax[1].plot(df['iter'], df['time'], label= f'{annotations[alg_name]}')
             ax[1].set_title('Время работы по итерациям')
             ax[1].set_xlabel('Итерации')
             ax[1].set_ylabel('Время одной итерации')
