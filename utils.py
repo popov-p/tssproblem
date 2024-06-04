@@ -92,7 +92,7 @@ def dump_data(output_path, row):
         csv_writer.writerow(row)
 
 def plot(simulation_name, plot_name):
-    annotations = {'gen': 'ГЕН', 'pso': 'МРЧ', 'cmaes': 'CMA-ES'}
+    annotations = {'gen': 'ГА', 'pso': 'МРЧ', 'cmaes': 'CMA-ES'}
     if plot_name == ch_iter_time:
         csv_data_list = []
         fig, ax = plt.subplots(2, 1, figsize=(8, 6))
@@ -146,8 +146,8 @@ def histogram():
     plt.figure()
     plt.bar(total_evals.keys(), total_evals.values(), alpha=0.5)
     plt.xlabel('Название алгоритма')
-    plt.ylabel('Всего подсчётов ЦФ')
-    plt.title('Количество подсчётов ЦФ по алгоритмам')
+    plt.ylabel('Всего вычислений ЦФ')
+    plt.title('Количество вычислений ЦФ по алгоритмам')
     plt.grid(True)
 
     plt.figure()
