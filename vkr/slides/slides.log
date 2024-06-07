@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.5.31)  7 JUN 2024 01:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.5.31)  7 JUN 2024 17:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -955,45 +955,99 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: Hyperref support is turned off
 (caption)             because hyperref has stopped early.
 )
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks48
+\XKV@tempa@toks=\toks49
+)
+\XKV@depth=\count341
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+
+(/usr/share/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box76
+)
+\tc@llx=\dimen305
+\tc@lly=\dimen306
+\tc@urx=\dimen307
+\tc@ury=\dimen308
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/share/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen309
+\adjbox@Height=\dimen310
+\adjbox@Depth=\dimen311
+\adjbox@Totalheight=\dimen312
+\adjbox@pwidth=\dimen313
+\adjbox@pheight=\dimen314
+\adjbox@pdepth=\dimen315
+\adjbox@ptotalheight=\dimen316
+
+(/usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count342
+)
+(/usr/share/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box77
+\sift@deathcycles=\count343
+\@vwid@loff=\dimen317
+\@vwid@roff=\dimen318
+))
 (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count341
-\l__pdf_internal_box=\box76
+\l__color_backend_stack_int=\count344
+\l__pdf_internal_box=\box78
 ) (./slides.aux
 LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 
-8.
+9.
 
 (/usr/share/texmf-dist/tex/latex/cyrillic/t2acmss.fd
 File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ))
 \openout1 = `slides.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 23.
 LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 2
-2.
+3.
 
 (/usr/share/texmf-dist/tex/latex/cyrillic/t2acmr.fd
 File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    ... okay on input line 23.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1031,17 +1085,17 @@ LaTeX Font Info:    ... okay on input line 22.
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count342
-\scratchdimen=\dimen305
-\scratchbox=\box77
-\nofMPsegments=\count343
-\nofMParguments=\count344
-\everyMPshowfont=\toks48
-\MPscratchCnt=\count345
-\MPscratchDim=\dimen306
-\MPnumerator=\count346
-\makeMPintoPDFobject=\count347
-\everyMPtoPDFconversion=\toks49
+\scratchcounter=\count345
+\scratchdimen=\dimen319
+\scratchbox=\box79
+\nofMPsegments=\count346
+\nofMParguments=\count347
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count348
+\MPscratchDim=\dimen320
+\MPnumerator=\count349
+\makeMPintoPDFobject=\count350
+\everyMPtoPDFconversion=\toks51
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1051,64 +1105,64 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 22.
+Package hyperref Info: Link coloring OFF on input line 23.
  (./slides.out)
 (./slides.out)
 \@outlinefile=\write5
 \openout5 = `slides.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 22.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 23.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 22.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 23.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 22.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 22.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 22.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 22.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 23.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 22.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 22.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 22.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 23.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 22.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 22.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 22.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 23.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 22.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 22.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 23.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 22.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 23.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 22.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 22.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 22.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 22.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 22.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 23.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 22.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 22.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 23.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 23.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
 (Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 2
-2.
+3.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 2
-2.
+3.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 22.
+ut line 23.
 
 (/usr/share/texmf-dist/tex/latex/translator/translator-basic-dictionary-English
 .dict
@@ -1134,23 +1188,23 @@ Dictionary: translator-numbers-dictionary, Language: English
 sh.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \th on input line 22.
+LaTeX Info: Redefining \th on input line 23.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (./slides.nav)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
 
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 26.
+ut line 27.
 
 (/usr/share/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
@@ -1193,106 +1247,152 @@ Package pdftex.def Info: images/tr-l.png  used on input line 46.
 
 ] [15
 
-] [16
+]
+<images/cost-history.png, id=415, 593.96906pt x 441.14813pt>
+File: images/cost-history.png Graphic file (type png)
+<use images/cost-history.png>
+Package pdftex.def Info: images/cost-history.png  used on input line 224.
+(pdftex.def)             Requested size: 307.28987pt x 228.23381pt.
 
-] [17
+Overfull \vbox (15.80719pt too high) detected at line 224
+ []
+
+[16
+
+ <./images/cost-history.png (PNG copy)>]
+<images/evalsall.png, id=441, 442.65375pt x 341.02406pt>
+File: images/evalsall.png Graphic file (type png)
+<use images/evalsall.png>
+Package pdftex.def Info: images/evalsall.png  used on input line 238.
+(pdftex.def)             Requested size: 153.64493pt x 118.37152pt.
+<images/total-times.png, id=442, 580.1675pt x 454.69875pt>
+File: images/total-times.png Graphic file (type png)
+<use images/total-times.png>
+Package pdftex.def Info: images/total-times.png  used on input line 238.
+(pdftex.def)             Requested size: 153.64493pt x 120.41827pt.
+ [17
+
+ <./images/evalsall.png (PNG copy)> <./images/total-times.png>] [18
+
+] [19
+
+] [20
+
+] [21
 
 ]
-<images/900700-hist-wd-avgvol.png, id=466, 998.73125pt x 596.2275pt>
+<images/900700-hist-wd-avgvol.png, id=571, 998.73125pt x 596.2275pt>
 File: images/900700-hist-wd-avgvol.png Graphic file (type png)
 <use images/900700-hist-wd-avgvol.png>
 Package pdftex.def Info: images/900700-hist-wd-avgvol.png  used on input line 2
-46.
+93.
 (pdftex.def)             Requested size: 307.28987pt x 183.44576pt.
 
-Overfull \vbox (11.8994pt too high) detected at line 246
+Overfull \vbox (11.8994pt too high) detected at line 293
  []
 
-[18
+[22
 
  <./images/900700-hist-wd-avgvol.png>]
-<images/900700-boxplot-wd-avgvol.png, id=494, 998.73125pt x 593.21625pt>
+<images/900700-boxplot-wd-avgvol.png, id=600, 998.73125pt x 593.21625pt>
 File: images/900700-boxplot-wd-avgvol.png Graphic file (type png)
 <use images/900700-boxplot-wd-avgvol.png>
 Package pdftex.def Info: images/900700-boxplot-wd-avgvol.png  used on input lin
-e 253.
+e 301.
 (pdftex.def)             Requested size: 307.28987pt x 182.51927pt.
- [19
+ [23
 
  <./images/900700-boxplot-wd-avgvol.png>]
-<images/900700-line-1-time-boxplots-wd-avgvol.png, id=522, 1614.03pt x 881.2925
+<images/900700-line-1-time-boxplots-wd-avgvol.png, id=627, 1614.03pt x 881.2925
 pt>
 File: images/900700-line-1-time-boxplots-wd-avgvol.png Graphic file (type png)
 <use images/900700-line-1-time-boxplots-wd-avgvol.png>
 Package pdftex.def Info: images/900700-line-1-time-boxplots-wd-avgvol.png  used
- on input line 260.
+ on input line 308.
 (pdftex.def)             Requested size: 307.28987pt x 167.7835pt.
- [20
+ [24
 
  <./images/900700-line-1-time-boxplots-wd-avgvol.png>]
-<images/900700-line-1-time-boxplots-avgspeed-wd.png, id=549, 1643.13875pt x 868
+<images/900700-line-1-time-boxplots-avgspeed-wd.png, id=654, 1643.13875pt x 868
 .24374pt>
 File: images/900700-line-1-time-boxplots-avgspeed-wd.png Graphic file (type png
 )
 <use images/900700-line-1-time-boxplots-avgspeed-wd.png>
 Package pdftex.def Info: images/900700-line-1-time-boxplots-avgspeed-wd.png  us
-ed on input line 266.
+ed on input line 315.
 (pdftex.def)             Requested size: 307.28987pt x 162.37135pt.
- [21
+ [25
 
  <./images/900700-line-1-time-boxplots-avgspeed-wd.png>]
-<images/wd-vol-boxplots.png, id=576, 1104.125pt x 740.7675pt>
+<images/wd-vol-boxplots.png, id=682, 1104.125pt x 740.7675pt>
 File: images/wd-vol-boxplots.png Graphic file (type png)
 <use images/wd-vol-boxplots.png>
-Package pdftex.def Info: images/wd-vol-boxplots.png  used on input line 272.
+Package pdftex.def Info: images/wd-vol-boxplots.png  used on input line 321.
 (pdftex.def)             Requested size: 307.28987pt x 206.15883pt.
- [22
-
- <./images/wd-vol-boxplots.png>]
-<images/wd-speed-boxplots.png, id=602, 1078.0275pt x 748.7975pt>
-File: images/wd-speed-boxplots.png Graphic file (type png)
-<use images/wd-speed-boxplots.png>
-Package pdftex.def Info: images/wd-speed-boxplots.png  used on input line 278.
-(pdftex.def)             Requested size: 307.28987pt x 213.44377pt.
-
-Overfull \vbox (1.01715pt too high) detected at line 278
- []
-
-[23
-
- <./images/wd-speed-boxplots.png>]
-<images/radiodetectors.png, id=628, 877.2775pt x 898.35625pt>
-File: images/radiodetectors.png Graphic file (type png)
-<use images/radiodetectors.png>
-Package pdftex.def Info: images/radiodetectors.png  used on input line 284.
-(pdftex.def)             Requested size: 199.73653pt x 204.534pt.
- [24
-
- <./images/radiodetectors.png>]
-<images/detectors-mapping.jpg, id=656, 586.44093pt x 323.70938pt>
-File: images/detectors-mapping.jpg Graphic file (type jpg)
-<use images/detectors-mapping.jpg>
-Package pdftex.def Info: images/detectors-mapping.jpg  used on input line 290.
-(pdftex.def)             Requested size: 307.28987pt x 169.61902pt.
-
-[25
-
- <./images/detectors-mapping.jpg>]
-<images/detectors-setting.png, id=684, 1672.2475pt x 808.01875pt>
-File: images/detectors-setting.png Graphic file (type png)
-<use images/detectors-setting.png>
-Package pdftex.def Info: images/detectors-setting.png  used on input line 300.
-(pdftex.def)             Requested size: 245.83282pt x 118.78102pt.
-<images/state-ch.png, id=685, 879.285pt x 181.67876pt>
-File: images/state-ch.png Graphic file (type png)
-<use images/state-ch.png>
-Package pdftex.def Info: images/state-ch.png  used on input line 300.
-(pdftex.def)             Requested size: 307.28987pt x 63.49149pt.
  [26
 
- <./images/detectors-setting.png> <./images/state-ch.png>] [27
+ <./images/wd-vol-boxplots.png>]
+<images/wd-speed-boxplots.png, id=708, 1078.0275pt x 748.7975pt>
+File: images/wd-speed-boxplots.png Graphic file (type png)
+<use images/wd-speed-boxplots.png>
+Package pdftex.def Info: images/wd-speed-boxplots.png  used on input line 328.
+(pdftex.def)             Requested size: 307.28987pt x 213.44377pt.
+
+Overfull \vbox (1.01715pt too high) detected at line 328
+ []
+
+[27
+
+ <./images/wd-speed-boxplots.png>] [28
 
 ]
+<images/radiodetectors.png, id=759, 877.2775pt x 898.35625pt>
+File: images/radiodetectors.png Graphic file (type png)
+<use images/radiodetectors.png>
+Package pdftex.def Info: images/radiodetectors.png  used on input line 357.
+(pdftex.def)             Requested size: 199.73653pt x 204.534pt.
+ [29
+
+ <./images/radiodetectors.png>]
+<images/detectors-mapping.jpg, id=788, 586.44093pt x 323.70938pt>
+File: images/detectors-mapping.jpg Graphic file (type jpg)
+<use images/detectors-mapping.jpg>
+Package pdftex.def Info: images/detectors-mapping.jpg  used on input line 363.
+(pdftex.def)             Requested size: 307.28987pt x 169.61902pt.
+
+[30
+
+ <./images/detectors-mapping.jpg>]
+<images/tl-destinations.png, id=814, 1099.10625pt x 584.1825pt>
+File: images/tl-destinations.png Graphic file (type png)
+<use images/tl-destinations.png>
+Package pdftex.def Info: images/tl-destinations.png  used on input line 368.
+(pdftex.def)             Requested size: 307.28987pt x 163.32039pt.
+ [31
+
+ <./images/tl-destinations.png>]
+<images/sumo-gui-roadmap.png, id=841, 1435.3625pt x 776.9025pt>
+File: images/sumo-gui-roadmap.png Graphic file (type png)
+<use images/sumo-gui-roadmap.png>
+Package pdftex.def Info: images/sumo-gui-roadmap.png  used on input line 374.
+(pdftex.def)             Requested size: 307.28987pt x 166.3195pt.
+
+[32
+
+ <./images/sumo-gui-roadmap.png>]
+<images/detectors-setting.png, id=867, 1672.2475pt x 808.01875pt>
+File: images/detectors-setting.png Graphic file (type png)
+<use images/detectors-setting.png>
+Package pdftex.def Info: images/detectors-setting.png  used on input line 384.
+(pdftex.def)             Requested size: 245.83282pt x 118.78102pt.
+<images/state-ch.png, id=868, 879.285pt x 181.67876pt>
+File: images/state-ch.png Graphic file (type png)
+<use images/state-ch.png>
+Package pdftex.def Info: images/state-ch.png  used on input line 384.
+(pdftex.def)             Requested size: 307.28987pt x 63.49149pt.
+ [33
+
+ <./images/detectors-setting.png> <./images/state-ch.png>]
 \tf@nav=\write6
 \openout6 = `slides.nav'.
 
@@ -1311,31 +1411,35 @@ Package rerunfilecheck Info: File `slides.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 24782 strings out of 474116
- 471372 string characters out of 5750249
- 1936187 words of memory out of 5000000
- 46575 multiletter control sequences out of 15000+600000
+ 25943 strings out of 474116
+ 492133 string characters out of 5750249
+ 1949187 words of memory out of 5000000
+ 47689 multiletter control sequences out of 15000+600000
  571677 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,14n,123p,408b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mss8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></us
-r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
-m10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist
-/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/pu
-blic/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/s
-fsx1095.pfb>
-Output written on slides.pdf (27 pages, 1731460 bytes).
+ 128i,14n,123p,408b,652s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Navigation34} has been referenced but does not exis
+t, replaced by a fixed one
+
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+s8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/f
+onts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfs
+x1095.pfb>
+Output written on slides.pdf (33 pages, 2064575 bytes).
 PDF statistics:
- 819 PDF objects out of 1000 (max. 8388607)
- 732 compressed objects within 8 object streams
- 61 named destinations out of 1000 (max. 500000)
- 98 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 981 PDF objects out of 1000 (max. 8388607)
+ 882 compressed objects within 9 object streams
+ 74 named destinations out of 1000 (max. 500000)
+ 123 words of extra memory for PDF output out of 10000 (max. 10000000)
 

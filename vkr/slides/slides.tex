@@ -4,6 +4,7 @@
 \usetheme{Rochester}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{adjustbox}
 \setbeamertemplate{caption}[numbered]
 %:\captionsetup[figure]{labelformat=empty}
 
@@ -26,7 +27,6 @@
 	\end{frame}
 	
 	\begin{frame}{Актуальность}
-		
 		\begin{columns}[T]
 			\begin{column}{0.6\textwidth}
 				\begin{itemize}
@@ -73,11 +73,11 @@
 	\end{frame}
 	
 	\begin{frame}{Постановка задачи}
-		Из $V$ выделим подможества $S\subseteq V$, $D\subseteq V$ и дадим опр-я:
-		\begin{block}{Определение}
+		Из $V$ выделим подможества $S\subset V$, $D\subset V$ и дадим опр-я:
+		\begin{block}{Источник}
 			\textit{Источником} называется элемент множества $S$, который порождает транспортный поток.
 		\end{block}
-		\begin{block}{Определение}
+		\begin{block}{Сток}
 			\textit{Стоком} называется элемент множества $D$, который поглощает транспортный поток.
 		\end{block}
 		\begin{itemize}
@@ -90,13 +90,13 @@
 	\end{frame}
 	
 	\begin{frame}{Постановка задачи}
-		\begin{block}{Определение}
-			Множество $W$ всех потокообразующих пар представим в виде декартова произведения 
-			\begin{equation}
+		\begin{itemize}
+			\item Множество $W$ всех потокообразующих пар представим в виде декартова произведения 
+			$$
 				W = S \times D = \{\omega = (i, j): \ i \in S, j \in D\}
-			\end{equation}
-		\end{block}
-		\begin{block}{Определение}
+			$$
+		\end{itemize}
+		\begin{block}{Маршрут}
 			Путём (маршрутом) в сети $\Gamma$, соединяющим вершины $i$ и $j$, назовём последовательность дуг
 			\begin{equation}
 				\scriptstyle e_1 = (i\rightarrow k_1), \ e_2 = (k_1 \rightarrow k_2), \ \ldots, \ e_m = (k_{m-1} \rightarrow k_m), \  e_{m+1} = (k_m \rightarrow j)
@@ -108,7 +108,7 @@
 	\begin{frame}{Постановка задачи}
 		\begin{itemize}
 			\item Обозначим через $P_w$ множество альтернативных маршрутов, связывающих пару $w \in W$.
-			\item Совокупность всех путей в сети $\Gamma$ обозначим через $P = \underset{\omega \in W}{\cup}P_{\omega}$.
+			\item Совокупность всех путей в сети $\Gamma$ обозначим через $P = \underset{w \in W}{\cup}P_{w}$.
 			\item В маршрутах предполагается отсутствие петель и циклов.
 			\item Автомобили перемещаются по маршрутам из $P$.
 			\item Пользователями дорожной сети будем считать только автомобили.
@@ -142,8 +142,10 @@
 			\end{aligned}}, X \in \mathbb{R}^{N\cdot K}$ вектор, содержащий длительности фаз светофорных объектов.
 			\item $T[\text{с}]$ - продолжительность времени симуляции трафика.
 			\item $\mathcal{N}$ - количество ТС, преодолевших полные намеченные пути (маршруты) за время $T$.
-			\item \textit{Время ожидания} (\textit{простоя}) $\tau_i(X)$ $i$-ого ТС - время, в течение которого скорость $v$ ТС удовлетворяет ограничению $v < 0.1 \ \frac{\text{м}}{\text{c}}$.\\
 		\end{itemize}
+		\begin{block}{Время ожидания}
+			\textit{Время ожидания} (\textit{простоя}) $\tau_i(X)$ $i$-ого ТС - время, в течение которого скорость $v$ ТС удовлетворяет ограничению $v < 0.1 \ \frac{\text{м}}{\text{c}}$.
+		\end{block}
 	\end{frame}
 	
 	\begin{frame}{Постановка задачи}
@@ -175,18 +177,6 @@
 	\end{frame}
 	
 	\begin{frame}{Анализ существующих решений}
-		Samra S., El-Mahdy A., Wada Y. A Linear Time and Space Algorithm for
-		Optimal Traffic-Signal Duration at an Intersection // IEEE Transactions on Intelligent
-		Transportation Systems. — 2015. — Т. 16, No 1. — С. 387—395.
-		\begin{itemize}
-			\item Подход, основанный на динамическом программировании.
-			\item Миркромоделирование не производится.
-			\item На основании исторических данных предлагается предсказывать, какое количество ТС пересечёт перекресток в течение каждой из фаз в будущем.
-			\item Предсказанные значения трафика используются в последующих шагах алгоритма.
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{Анализ существующих решений}
 		Solving Traffic Signal Setting Problem Using Machine Learning / P. Gora
 		[и др.] // 2019 6th International Conference on Models and Technologies for Intelligent
 		Transportation Systems
@@ -194,17 +184,6 @@
 			\item Использование суррогатной модели для вычисления значения ЦФ.
 			\item Оптимизация длительностей фаз при помощи метаэвристических алгоритмов оптимизации.
 			\item Сбор данных о трафике при помощи спутников и использование Floating Car Data.
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{Анализ существующих решений}
-		Sun D., Benekohal R. ( F., Waller S. T. Bi-level Programming Formulation
-		and Heuristic Solution Approach for Dynamic Traffic Signal Optimization // Computer–Aided Civil and Infrastructure Engineering. — 2006. — Т. 21.
-		\begin{itemize}
-			\item Представление проблемы в виде двухуровневой задачи оптимизации.
-			\item Задача верхнего уровня - расстановка длительностей действия сигналов СО.
-			\item Задача нижнего уровня - распределение маршрутов ТС.
-			\item Данные о трафике - матрица корреспонденций.
 		\end{itemize}
 	\end{frame}
 	
@@ -225,19 +204,87 @@
 	\begin{frame}{Предлагаемый алгоритм}
 		Предлагается решить задачу оптимизации (\ref{eq:goal-function}) при помощи метаэвристических алгоритмов:
 		\begin{itemize}
-			\item Генетический алгоритм;
-			\item Метод роя частиц;
+			\item Генетический алгоритм (ГА);
+			\item Метод роя частиц (МРЧ);
 			\item Эволюционная стратегия с адаптацией матрицы ковариаций (CMA-ES).
 		\end{itemize}
 		При помощи фреймворка SUMO:
 		\begin{itemize}
-			\item Задать дорожную сеть, светофорные объекты, состояния, фазы.
+			\item Задать дорожную сеть, светофорные объекты, состояния, фазы, поток машин, опираясь на реальные данные.
 			\item Задать движение потока ТС, моделью\\ Intelligent Driver Model (IDM).
 			\item Обеспечить вычисление значения ЦФ.
 		\end{itemize}
 	\end{frame}
 	
-	\begin{frame}{Данные о трафике}
+	
+	\begin{frame}{Результаты}
+		\begin{figure}
+			\includegraphics[width=\textwidth]{images/cost-history.png}
+		\end{figure}
+	\end{frame}
+	\begin{frame}{Результаты}
+		\begin{columns}[T]
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\includegraphics[width=\textwidth]{images/evalsall.png}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\includegraphics[width=\textwidth]{images/total-times.png}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	\begin{frame}{Результаты}
+		\begin{itemize}
+			\item Лучшее решение получено при помощи МРЧ. Лучше исходного на 18$\%$.
+			\item В порядке использования вычислительно-временных ресурсов алгоритмы
+			располагаются следующим образом: CMA-ES, ГА, МРЧ от лучшего к
+			худшему.
+			\item МРЧ требует кратно большее количество вычислительных ресурсов.
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}{Заключение}
+		Разработано:
+		\begin{itemize}
+			\item ПО, позволяющее рассчитать оптимальную расстановку сигналов СО при помощи технологии микромоделирования потока ТС.
+		\end{itemize}
+		Исследованы и сравнены:
+		\begin{itemize}
+			\item Временные и вычислительные затраты используемых алгоритмов оптимизации.
+		\end{itemize}
+		Получены:
+		\begin{itemize}
+			\item Результаты, превосходящие исходные данные на 18 $\%$.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Приложение. Анализ существующих решений}
+		Sun D., Benekohal R. ( F., Waller S. T. Bi-level Programming Formulation
+		and Heuristic Solution Approach for Dynamic Traffic Signal Optimization // Computer–Aided Civil and Infrastructure Engineering. — 2006. — Т. 21.
+		\begin{itemize}
+			\item Представление проблемы в виде двухуровневой задачи оптимизации.
+			\item Задача верхнего уровня - расстановка длительностей действия сигналов СО.
+			\item Задача нижнего уровня - распределение маршрутов ТС.
+			\item Данные о трафике - матрица корреспонденций.
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Приложение. Анализ существующих решений}
+		Samra S., El-Mahdy A., Wada Y. A Linear Time and Space Algorithm for
+		Optimal Traffic-Signal Duration at an Intersection // IEEE Transactions on Intelligent
+		Transportation Systems. — 2015. — Т. 16, No 1. — С. 387—395.
+		\begin{itemize}
+			\item Подход, основанный на динамическом программировании.
+			\item Миркромоделирование не производится.
+			\item На основании исторических данных предлагается предсказывать, какое количество ТС пересечёт перекресток в течение каждой из фаз в будущем.
+			\item Предсказанные значения трафика используются в последующих шагах алгоритма.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Приложение. Данные о трафике}
 		\textbf{Volume} - интенсивность движения за 5 мин \bigg[$\frac{\text{ед}}{\text{5 мин}}$\bigg].
 		\begin{figure}
 			\includegraphics[width=\textwidth]{images/900700-hist-wd-avgvol.png}
@@ -245,51 +292,88 @@
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{Данные о трафике}
+	\begin{frame}{Приложение. Данные о трафике}
+		Гистограмма (\ref{traffic:hist-vol}) в виде боксплота.
 		\begin{figure}
 			\includegraphics[width=\textwidth]{images/900700-boxplot-wd-avgvol.png}
 			\label{traffic:boxplot-vol}
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{Данные о трафике}
+	\begin{frame}{Приложение. Данные о трафике}
 		\begin{figure}
 			\includegraphics[width=\textwidth]{images/900700-line-1-time-boxplots-wd-avgvol.png}
 			\label{traffic:time-boxplots-vol}
 		\end{figure}
 	\end{frame}
-	\begin{frame}{Данные о трафике}
+	
+	\begin{frame}{Приложение. Данные о трафике}
 		\textbf{Speed} - средняя скорость транспортных средств за 5 мин \bigg[$\frac{\text{км}}{\text{ч}}$\bigg].
 		\begin{figure}
 			\includegraphics[width=\textwidth]{images/900700-line-1-time-boxplots-avgspeed-wd.png}
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{Данные о трафике}
+	\begin{frame}{Приложение. Данные о трафике}
 		\begin{figure}
 			\includegraphics[width=\textwidth]{images/wd-vol-boxplots.png}
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{Данные о трафике}
+	
+	\begin{frame}{Приложение. Данные о трафике}
 		\begin{figure}
 			\includegraphics[width=\textwidth]{images/wd-speed-boxplots.png}
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{Дорожный участок}
+	\begin{frame}{Приложение. Результаты}
+		Количество машин, предзагруженных в симуляцию на основе данных с детекторов, $N_c = 5959$.
+		$$
+		X_{src} = [65, 35, 20, 40, 22, 34], \ f(X_{src}) = 73.42, \ N_{e} = 4767
+		$$
+		\begin{adjustbox}{max width=\textwidth}
+			\begin{tabular}{|l|l|l|l|l|l|l|l|}
+				\hline
+				Наз. алг.&$X_{opt}$&$f(X_{opt})$&$I$&$N_{f}$&$T_{\text{общ}}$&$T_{i}$&$N_{e}$\\
+				\hline
+				CMA-ES&[57, 43, 20, 42, 39, 36]&64.48&100&900&415.64&4.16&5506\\ \hline
+				CMA-ES&[53, 39, 26, 42, 37, 38]&61.27&125&1125&519.67&4.16&5653\\ \hline
+				CMA-ES&[58, 40, 20, 39, 32, 34]&65.36&250&2250&998.58&3.99&5314\\ \hline
+				ГА&[51, 38, 29, 32, 47, 40]&62.39&100&3281&1372.01&13.72&5407 \\ \hline
+				ГА&[57, 35, 23, 40, 38, 39]&64.75&250&7851&3305.79&13.22&5470\\ \hline
+				ГА&[58, 40, 20, 28, 47, 42]&62.77&300&8076&3396.7&11.32&5066\\ \hline
+				МРЧ&[50, 39, 29, 49, 34, 35]&60.04&50&10150&3917.7&78.35&5602\\ \hline
+				МРЧ&[55, 37, 26, 41, 41, 36]&60.16&75&15225&6262.81&83.5&5684\\ \hline
+				МРЧ&[50, 38, 30, 51, 27, 40]&60.69&100&20300&8263.69&82.64&5252\\ \hline		
+			\end{tabular}
+		\end{adjustbox}
+	\end{frame}
+	
+	\begin{frame}{Приложение. Дорожный участок}
 		\begin{figure}
 			\includegraphics[width=0.65\textwidth]{images/radiodetectors.png}
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{Места установки детекторов}
+	\begin{frame}{Приложение. Места установки детекторов}
 		\begin{figure}
 			\includegraphics[width=\textwidth]{images/detectors-mapping.jpg}
 		\end{figure}
 	\end{frame}
+	\begin{frame}{Приложение. Направления движения СО 1}
+		\begin{figure}
+			\includegraphics[width=\textwidth]{images/tl-destinations.png}
+		\end{figure}
+	\end{frame}
+
+	\begin{frame}{Приложение. Модель дорожного участка}
+		\begin{figure}
+			\includegraphics[width=\textwidth]{images/sumo-gui-roadmap.png}
+		\end{figure}
+	\end{frame}
 	
-	\begin{frame}{Модель дорожного участка, пример состояния}
+	\begin{frame}{Приложение. Места установки детекторов, пример состояния}
 		\begin{figure}
 			\includegraphics[width=0.8\textwidth]{images/detectors-setting.png}
 		\end{figure}
@@ -298,9 +382,4 @@
 			\label{map:detectors-mapping}
 		\end{figure}
 	\end{frame}
-	
-	\begin{frame}{}
-		
-	\end{frame}
-	
 \end{document}
