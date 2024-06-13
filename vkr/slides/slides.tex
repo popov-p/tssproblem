@@ -166,40 +166,6 @@
 		\end{block}
 	\end{frame}
 	
-	\begin{frame}{Анализ существующих решений}
-		Tunc I., Soylemez M. Fuzzy logic and deep Q learning based control for traffic lights // Alexandria Engineering Journal. — 2023. — Т. 67. — С. 343—359.
-		\begin{itemize}
-			\item Каждый перекрёсток регулируется СО.
-			\item Алгоритмы ML отвечают за смену последовательностей фаз СО.
-			\item Изменение длительности зелёного сигнала СО контролируют алгоритмы, основанные на нечеткой логике.
-			\item Данные о трафике контролируются при помощи камер видеонаблюдения.
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{Анализ существующих решений}
-		Solving Traffic Signal Setting Problem Using Machine Learning / P. Gora
-		[и др.] // 2019 6th International Conference on Models and Technologies for Intelligent
-		Transportation Systems
-		\begin{itemize}
-			\item Использование суррогатной модели для вычисления значения ЦФ.
-			\item Оптимизация длительностей фаз при помощи метаэвристических алгоритмов оптимизации.
-			\item Сбор данных о трафике при помощи спутников и использование Floating Car Data.
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{Анализ существующих решений}
-		Chen S., Yang C.-B., Peng Y.-H. Algorithms for the Traffic Light Setting
-		Problem on the Graph Model. — 2007.\\
-		Zine-dine K., Madani A. USING PSO ALGORITHM FOR THE TRAFFIC
-		LIGHTS SETTING PROBLEM WITH CELLULAR AUTOMATON MODEL 1 //. —
-		2013.
-		\begin{itemize}
-			\item Дорожная сеть задаётся в виде ориентированного графа.
-			\item Используются дискретные модели или модели на основе дискретных.
-			\item Данные о трафике - матрица корреспонденций.
-			\item Имеют место значительные допущения в постановке задач.
-		\end{itemize}
-	\end{frame}
 	
 	\begin{frame}{Предлагаемый алгоритм}
 		Предлагается решить задачу оптимизации (\ref{eq:goal-function}) при помощи метаэвристических алгоритмов:
@@ -210,12 +176,55 @@
 		\end{itemize}
 		При помощи фреймворка SUMO:
 		\begin{itemize}
-			\item Задать дорожную сеть, светофорные объекты, состояния, фазы, поток машин, опираясь на реальные данные.
+			\item Задать дорожную сеть, светофорные объекты, состояния, фазы, поток машин.
 			\item Задать движение потока ТС, моделью\\ Intelligent Driver Model (IDM).
 			\item Обеспечить вычисление значения ЦФ.
 		\end{itemize}
 	\end{frame}
 	
+	\begin{frame} {Исходные данные}
+		Были предоставлены следующие реальные данные:
+		\begin{itemize}
+			\item Паспорта СО, содержащие информацию о:
+			\begin{itemize}
+				\item Состояниях;
+				\item Длительностях фаз;
+				\item Количестве сигналов.
+			\end{itemize}
+			\item Открытые источники (Google Maps, Яндекс Карты)
+			\begin{itemize}
+				\item Данные о дорожной разметке.
+			\end{itemize}
+			\item Датасеты с информацией о (об):
+			\begin{itemize}
+				\item Средней скорости ТС на дорожном участке.
+				\item Интенсивности ТС на дорожном участке.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Результаты}
+		Количество машин, предзагруженных в симуляцию на основе данных с детекторов, $N_c = 5959$.
+		$$
+		X_{src} = [65, 35, 20, 40, 22, 34], \ f(X_{src}) = 73.42, \ N_{e} = 4767
+		$$
+		\begin{adjustbox}{max width=\textwidth}
+			\begin{tabular}{|l|l|l|l|l|l|l|l|}
+				\hline
+				Наз. алг.&$X_{opt}$&$f(X_{opt})$&$I$&$N_{f}$&$T_{\text{общ}}$&$T_{i}$&$N_{e}$\\
+				\hline
+				CMA-ES&[57, 43, 20, 42, 39, 36]&64.48&100&900&415.64&4.16&5506\\ \hline
+				CMA-ES&[53, 39, 26, 42, 37, 38]&61.27&125&1125&519.67&4.16&5653\\ \hline
+				CMA-ES&[58, 40, 20, 39, 32, 34]&65.36&250&2250&998.58&3.99&5314\\ \hline
+				ГА&[51, 38, 29, 32, 47, 40]&62.39&100&3281&1372.01&13.72&5407 \\ \hline
+				ГА&[57, 35, 23, 40, 38, 39]&64.75&250&7851&3305.79&13.22&5470\\ \hline
+				ГА&[58, 40, 20, 28, 47, 42]&62.77&300&8076&3396.7&11.32&5066\\ \hline
+				МРЧ&[50, 39, 29, 49, 34, 35]&60.04&50&10150&3917.7&78.35&5602\\ \hline
+				МРЧ&[55, 37, 26, 41, 41, 36]&60.16&75&15225&6262.81&83.5&5684\\ \hline
+				МРЧ&[50, 38, 30, 51, 27, 40]&60.69&100&20300&8263.69&82.64&5252\\ \hline		
+			\end{tabular}
+		\end{adjustbox}
+	\end{frame}
 	
 	\begin{frame}{Результаты}
 		\begin{figure}
@@ -259,6 +268,41 @@
 		Получены:
 		\begin{itemize}
 			\item Результаты, превосходящие исходные данные на 18 $\%$.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Приложение. Анализ существующих решений}
+		Tunc I., Soylemez M. Fuzzy logic and deep Q learning based control for traffic lights // Alexandria Engineering Journal. — 2023. — Т. 67. — С. 343—359.
+		\begin{itemize}
+			\item Каждый перекрёсток регулируется СО.
+			\item Алгоритмы ML отвечают за смену последовательностей фаз СО.
+			\item Изменение длительности зелёного сигнала СО контролируют алгоритмы, основанные на нечеткой логике.
+			\item Данные о трафике контролируются при помощи камер видеонаблюдения.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Приложение. Анализ существующих решений}
+		Solving Traffic Signal Setting Problem Using Machine Learning / P. Gora
+		[и др.] // 2019 6th International Conference on Models and Technologies for Intelligent
+		Transportation Systems
+		\begin{itemize}
+			\item Использование суррогатной модели для вычисления значения ЦФ.
+			\item Оптимизация длительностей фаз при помощи метаэвристических алгоритмов оптимизации.
+			\item Сбор данных о трафике при помощи спутников и использование Floating Car Data.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Приложение. Анализ существующих решений}
+		Chen S., Yang C.-B., Peng Y.-H. Algorithms for the Traffic Light Setting
+		Problem on the Graph Model. — 2007.\\
+		Zine-dine K., Madani A. USING PSO ALGORITHM FOR THE TRAFFIC
+		LIGHTS SETTING PROBLEM WITH CELLULAR AUTOMATON MODEL 1 //. —
+		2013.
+		\begin{itemize}
+			\item Дорожная сеть задаётся в виде ориентированного графа.
+			\item Используются дискретные модели или модели на основе дискретных.
+			\item Данные о трафике - матрица корреспонденций.
+			\item Имеют место значительные допущения в постановке задач.
 		\end{itemize}
 	\end{frame}
 	
@@ -325,29 +369,6 @@
 		\begin{figure}
 			\includegraphics[width=\textwidth]{images/wd-speed-boxplots.png}
 		\end{figure}
-	\end{frame}
-	
-	\begin{frame}{Приложение. Результаты}
-		Количество машин, предзагруженных в симуляцию на основе данных с детекторов, $N_c = 5959$.
-		$$
-		X_{src} = [65, 35, 20, 40, 22, 34], \ f(X_{src}) = 73.42, \ N_{e} = 4767
-		$$
-		\begin{adjustbox}{max width=\textwidth}
-			\begin{tabular}{|l|l|l|l|l|l|l|l|}
-				\hline
-				Наз. алг.&$X_{opt}$&$f(X_{opt})$&$I$&$N_{f}$&$T_{\text{общ}}$&$T_{i}$&$N_{e}$\\
-				\hline
-				CMA-ES&[57, 43, 20, 42, 39, 36]&64.48&100&900&415.64&4.16&5506\\ \hline
-				CMA-ES&[53, 39, 26, 42, 37, 38]&61.27&125&1125&519.67&4.16&5653\\ \hline
-				CMA-ES&[58, 40, 20, 39, 32, 34]&65.36&250&2250&998.58&3.99&5314\\ \hline
-				ГА&[51, 38, 29, 32, 47, 40]&62.39&100&3281&1372.01&13.72&5407 \\ \hline
-				ГА&[57, 35, 23, 40, 38, 39]&64.75&250&7851&3305.79&13.22&5470\\ \hline
-				ГА&[58, 40, 20, 28, 47, 42]&62.77&300&8076&3396.7&11.32&5066\\ \hline
-				МРЧ&[50, 39, 29, 49, 34, 35]&60.04&50&10150&3917.7&78.35&5602\\ \hline
-				МРЧ&[55, 37, 26, 41, 41, 36]&60.16&75&15225&6262.81&83.5&5684\\ \hline
-				МРЧ&[50, 38, 30, 51, 27, 40]&60.69&100&20300&8263.69&82.64&5252\\ \hline		
-			\end{tabular}
-		\end{adjustbox}
 	\end{frame}
 	
 	\begin{frame}{Приложение. Дорожный участок}

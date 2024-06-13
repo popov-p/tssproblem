@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.5.31)  7 JUN 2024 17:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.5.31)  13 JUN 2024 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1245,34 +1245,34 @@ Package pdftex.def Info: images/tr-l.png  used on input line 46.
 
 ] [14
 
-] [15
-
 ]
-<images/cost-history.png, id=415, 593.96906pt x 441.14813pt>
+<images/cost-history.png, id=391, 593.96906pt x 441.14813pt>
 File: images/cost-history.png Graphic file (type png)
 <use images/cost-history.png>
-Package pdftex.def Info: images/cost-history.png  used on input line 224.
+Package pdftex.def Info: images/cost-history.png  used on input line 233.
 (pdftex.def)             Requested size: 307.28987pt x 228.23381pt.
 
-Overfull \vbox (15.80719pt too high) detected at line 224
+Overfull \vbox (15.80719pt too high) detected at line 233
  []
 
-[16
+[15
 
  <./images/cost-history.png (PNG copy)>]
-<images/evalsall.png, id=441, 442.65375pt x 341.02406pt>
+<images/evalsall.png, id=417, 442.65375pt x 341.02406pt>
 File: images/evalsall.png Graphic file (type png)
 <use images/evalsall.png>
-Package pdftex.def Info: images/evalsall.png  used on input line 238.
+Package pdftex.def Info: images/evalsall.png  used on input line 247.
 (pdftex.def)             Requested size: 153.64493pt x 118.37152pt.
-<images/total-times.png, id=442, 580.1675pt x 454.69875pt>
+<images/total-times.png, id=418, 580.1675pt x 454.69875pt>
 File: images/total-times.png Graphic file (type png)
 <use images/total-times.png>
-Package pdftex.def Info: images/total-times.png  used on input line 238.
+Package pdftex.def Info: images/total-times.png  used on input line 247.
 (pdftex.def)             Requested size: 153.64493pt x 120.41827pt.
- [17
+ [16
 
- <./images/evalsall.png (PNG copy)> <./images/total-times.png>] [18
+ <./images/evalsall.png (PNG copy)> <./images/total-times.png>] [17
+
+] [18
 
 ] [19
 
@@ -1280,117 +1280,119 @@ Package pdftex.def Info: images/total-times.png  used on input line 238.
 
 ] [21
 
+] [22
+
+] [23
+
 ]
-<images/900700-hist-wd-avgvol.png, id=571, 998.73125pt x 596.2275pt>
+<images/900700-hist-wd-avgvol.png, id=622, 998.73125pt x 596.2275pt>
 File: images/900700-hist-wd-avgvol.png Graphic file (type png)
 <use images/900700-hist-wd-avgvol.png>
-Package pdftex.def Info: images/900700-hist-wd-avgvol.png  used on input line 2
-93.
+Package pdftex.def Info: images/900700-hist-wd-avgvol.png  used on input line 3
+37.
 (pdftex.def)             Requested size: 307.28987pt x 183.44576pt.
 
-Overfull \vbox (11.8994pt too high) detected at line 293
+Overfull \vbox (11.8994pt too high) detected at line 337
  []
 
-[22
+[24
 
  <./images/900700-hist-wd-avgvol.png>]
-<images/900700-boxplot-wd-avgvol.png, id=600, 998.73125pt x 593.21625pt>
+<images/900700-boxplot-wd-avgvol.png, id=651, 998.73125pt x 593.21625pt>
 File: images/900700-boxplot-wd-avgvol.png Graphic file (type png)
 <use images/900700-boxplot-wd-avgvol.png>
 Package pdftex.def Info: images/900700-boxplot-wd-avgvol.png  used on input lin
-e 301.
+e 345.
 (pdftex.def)             Requested size: 307.28987pt x 182.51927pt.
- [23
+ [25
 
  <./images/900700-boxplot-wd-avgvol.png>]
-<images/900700-line-1-time-boxplots-wd-avgvol.png, id=627, 1614.03pt x 881.2925
+<images/900700-line-1-time-boxplots-wd-avgvol.png, id=680, 1614.03pt x 881.2925
 pt>
 File: images/900700-line-1-time-boxplots-wd-avgvol.png Graphic file (type png)
 <use images/900700-line-1-time-boxplots-wd-avgvol.png>
 Package pdftex.def Info: images/900700-line-1-time-boxplots-wd-avgvol.png  used
- on input line 308.
+ on input line 352.
 (pdftex.def)             Requested size: 307.28987pt x 167.7835pt.
- [24
+ [26
 
  <./images/900700-line-1-time-boxplots-wd-avgvol.png>]
-<images/900700-line-1-time-boxplots-avgspeed-wd.png, id=654, 1643.13875pt x 868
+<images/900700-line-1-time-boxplots-avgspeed-wd.png, id=707, 1643.13875pt x 868
 .24374pt>
 File: images/900700-line-1-time-boxplots-avgspeed-wd.png Graphic file (type png
 )
 <use images/900700-line-1-time-boxplots-avgspeed-wd.png>
 Package pdftex.def Info: images/900700-line-1-time-boxplots-avgspeed-wd.png  us
-ed on input line 315.
+ed on input line 359.
 (pdftex.def)             Requested size: 307.28987pt x 162.37135pt.
- [25
+ [27
 
  <./images/900700-line-1-time-boxplots-avgspeed-wd.png>]
-<images/wd-vol-boxplots.png, id=682, 1104.125pt x 740.7675pt>
+<images/wd-vol-boxplots.png, id=733, 1104.125pt x 740.7675pt>
 File: images/wd-vol-boxplots.png Graphic file (type png)
 <use images/wd-vol-boxplots.png>
-Package pdftex.def Info: images/wd-vol-boxplots.png  used on input line 321.
+Package pdftex.def Info: images/wd-vol-boxplots.png  used on input line 365.
 (pdftex.def)             Requested size: 307.28987pt x 206.15883pt.
- [26
+ [28
 
  <./images/wd-vol-boxplots.png>]
-<images/wd-speed-boxplots.png, id=708, 1078.0275pt x 748.7975pt>
+<images/wd-speed-boxplots.png, id=759, 1078.0275pt x 748.7975pt>
 File: images/wd-speed-boxplots.png Graphic file (type png)
 <use images/wd-speed-boxplots.png>
-Package pdftex.def Info: images/wd-speed-boxplots.png  used on input line 328.
+Package pdftex.def Info: images/wd-speed-boxplots.png  used on input line 372.
 (pdftex.def)             Requested size: 307.28987pt x 213.44377pt.
 
-Overfull \vbox (1.01715pt too high) detected at line 328
+Overfull \vbox (1.01715pt too high) detected at line 372
  []
 
-[27
+[29
 
- <./images/wd-speed-boxplots.png>] [28
-
-]
-<images/radiodetectors.png, id=759, 877.2775pt x 898.35625pt>
+ <./images/wd-speed-boxplots.png>]
+<images/radiodetectors.png, id=786, 877.2775pt x 898.35625pt>
 File: images/radiodetectors.png Graphic file (type png)
 <use images/radiodetectors.png>
-Package pdftex.def Info: images/radiodetectors.png  used on input line 357.
+Package pdftex.def Info: images/radiodetectors.png  used on input line 378.
 (pdftex.def)             Requested size: 199.73653pt x 204.534pt.
- [29
+ [30
 
  <./images/radiodetectors.png>]
-<images/detectors-mapping.jpg, id=788, 586.44093pt x 323.70938pt>
+<images/detectors-mapping.jpg, id=814, 586.44093pt x 323.70938pt>
 File: images/detectors-mapping.jpg Graphic file (type jpg)
 <use images/detectors-mapping.jpg>
-Package pdftex.def Info: images/detectors-mapping.jpg  used on input line 363.
+Package pdftex.def Info: images/detectors-mapping.jpg  used on input line 384.
 (pdftex.def)             Requested size: 307.28987pt x 169.61902pt.
 
-[30
+[31
 
  <./images/detectors-mapping.jpg>]
-<images/tl-destinations.png, id=814, 1099.10625pt x 584.1825pt>
+<images/tl-destinations.png, id=841, 1099.10625pt x 584.1825pt>
 File: images/tl-destinations.png Graphic file (type png)
 <use images/tl-destinations.png>
-Package pdftex.def Info: images/tl-destinations.png  used on input line 368.
+Package pdftex.def Info: images/tl-destinations.png  used on input line 389.
 (pdftex.def)             Requested size: 307.28987pt x 163.32039pt.
- [31
+ [32
 
  <./images/tl-destinations.png>]
-<images/sumo-gui-roadmap.png, id=841, 1435.3625pt x 776.9025pt>
+<images/sumo-gui-roadmap.png, id=867, 1435.3625pt x 776.9025pt>
 File: images/sumo-gui-roadmap.png Graphic file (type png)
 <use images/sumo-gui-roadmap.png>
-Package pdftex.def Info: images/sumo-gui-roadmap.png  used on input line 374.
+Package pdftex.def Info: images/sumo-gui-roadmap.png  used on input line 395.
 (pdftex.def)             Requested size: 307.28987pt x 166.3195pt.
 
-[32
+[33
 
  <./images/sumo-gui-roadmap.png>]
-<images/detectors-setting.png, id=867, 1672.2475pt x 808.01875pt>
+<images/detectors-setting.png, id=893, 1672.2475pt x 808.01875pt>
 File: images/detectors-setting.png Graphic file (type png)
 <use images/detectors-setting.png>
-Package pdftex.def Info: images/detectors-setting.png  used on input line 384.
+Package pdftex.def Info: images/detectors-setting.png  used on input line 405.
 (pdftex.def)             Requested size: 245.83282pt x 118.78102pt.
-<images/state-ch.png, id=868, 879.285pt x 181.67876pt>
+<images/state-ch.png, id=894, 879.285pt x 181.67876pt>
 File: images/state-ch.png Graphic file (type png)
 <use images/state-ch.png>
-Package pdftex.def Info: images/state-ch.png  used on input line 384.
+Package pdftex.def Info: images/state-ch.png  used on input line 405.
 (pdftex.def)             Requested size: 307.28987pt x 63.49149pt.
- [33
+ [34
 
  <./images/detectors-setting.png> <./images/state-ch.png>]
 \tf@nav=\write6
@@ -1411,35 +1413,31 @@ Package rerunfilecheck Info: File `slides.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 25943 strings out of 474116
- 492133 string characters out of 5750249
- 1949187 words of memory out of 5000000
- 47689 multiletter control sequences out of 15000+600000
- 571677 words of font info for 71 fonts, out of 8000000 for 9000
+ 25973 strings out of 474116
+ 493004 string characters out of 5750249
+ 1948187 words of memory out of 5000000
+ 47717 multiletter control sequences out of 15000+600000
+ 572489 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,14n,123p,408b,652s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{Navigation34} has been referenced but does not exis
-t, replaced by a fixed one
-
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-s8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/
-share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
-0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/f
-onts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfs
-x1095.pfb>
-Output written on slides.pdf (33 pages, 2064575 bytes).
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mss8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></us
+r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist
+/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/pu
+blic/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/s
+fss1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb>
+Output written on slides.pdf (34 pages, 2075360 bytes).
 PDF statistics:
- 981 PDF objects out of 1000 (max. 8388607)
- 882 compressed objects within 9 object streams
- 74 named destinations out of 1000 (max. 500000)
+ 1011 PDF objects out of 1200 (max. 8388607)
+ 908 compressed objects within 10 object streams
+ 75 named destinations out of 1000 (max. 500000)
  123 words of extra memory for PDF output out of 10000 (max. 10000000)
 
