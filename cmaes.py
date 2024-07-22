@@ -9,6 +9,7 @@ from functools import partial
 import time
 import os
 import csv
+
 #cmaes utils
 
 def create_bounds(xml_file):
@@ -20,9 +21,9 @@ def create_bounds(xml_file):
 
     for tl_logic in root.findall(".//tlLogic"):
         for phase in tl_logic.findall("phase"):
-            if "y" not in phase.attrib["state"]:
-                lower_bounds.extend([30])
-                upper_bounds.extend([60])
+            if ("y" not in phase.attrib["state"]) and not(all(char == "r" for char in phase.attrib["state"])):
+                lower_bounds.extend([20])
+                upper_bounds.extend([70])
 
     bounds_dict = {'bounds': [lower_bounds, upper_bounds]}
     return bounds_dict
@@ -45,7 +46,8 @@ def fitness_func(solution, **kwargs):
         '--no-warnings', 't',
         '--no-step-log', 't',
         '--quit-on-end', 't',
-        #'-e', utils.last_simulation_step,
+        #'-b', utils.first_simulation_step,
+        '-e', utils.last_simulation_step,
         '--default.carfollowmodel', utils.default_carfollowmodel,
         '--collision.mingap-factor', utils.collision_mingap_factor,
     ]
@@ -61,17 +63,18 @@ def main(argv):
         print('Usage: python gen.py <simulation-folder-name (for example: "medium")>')
         sys.exit(1)
     else:
-        simulation_name = 'commercial' #argv[1]
+        simulation_name = 'commercial'
         #parameters preparation
         opts = create_bounds(xml_file=utils.net_dict.get(simulation_name))
         dimension = len(opts.get('bounds')[1])
 
-        opts['AdaptSigma'] = cma.sigma_adaptation.CMAAdaptSigmaTPA
-        x0 = np.random.uniform(low=opts.get('bounds')[0], high=opts.get('bounds')[1], size=dimension)
+        opts['AdaptSigma'] = cma.sigma_adaptation.CMAAdaptSigmaCSA
+        #x0 = np.random.uniform(low=opts.get('bounds')[0], high=opts.get('bounds')[1], size=dimension)
+        x0 = np.array([65,35,20,40,22,34])
         sigma = 5
         #----------------------
         es = cma.CMAEvolutionStrategy(x0, sigma, opts)
-        iter_count = 80
+        iter_count = 100
         ff_partial = partial(fitness_func,
                              net_file=utils.net_dict.get(simulation_name),
                              folder_name=simulation_name,
@@ -80,7 +83,7 @@ def main(argv):
         iter_times = [time.time(),]
         cost_history = []
         #-------------------------------
-        with ProcessPoolExecutor(15) as executor:
+        with ProcessPoolExecutor(13) as executor:
             for _ in range(iter_count):
                 solutions = es.ask()
                 fitness_values = list(executor.map(ff_partial, solutions))
@@ -93,7 +96,6 @@ def main(argv):
         current_dir = os.getcwd()
         table = f"{current_dir}/{simulation_name}/results/results.csv"
         
-        #header = ['name', 'xbest', 'fbest', 'iter-count', 'evals-all', 'sum-time', 'avg-iter-time']
         with open(table, 'a', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(('cmaes', simulation_name, np.round(es.result.xbest),

@@ -1,0 +1,47 @@
+\begin{algorithm} %[h]
+	\SetKwFunction{algoDTestsFDSCALING}{} 
+	\SetKwProg{myalg}{Algorithm}{}{} %write in 2nd agrument <<Algorithm>>, <<Procedure>> etc
+	\nonl\myalg{\algoDTestsFDSCALING}{
+		\KwInput{
+			Установить параметры $\lambda, \omega_{i = 1\ldots \lambda}, c_m, c_\sigma, d_{\sigma}, c_c, c_1$ и $c_\mu$ по таблице из \cite{HansenCmaes}, а также подобрать $X_0$ - начальное приближение.
+		} 
+		\KwOutput{Оптимальное значение $f(X_{*})$.} 
+		Инициализировать эволюционные пути $p_\sigma = 0, p_c = 0$, матрицу ковариаций $C = I$, счётчик итераций $g=0$\;
+		Выбрать среднее распределения $m \in \mathbb{R}^n$ и шаг $\sigma \in \mathbb{R} > 0$\;
+		\While {не выполнено условие остановки, $g \leftarrow g + 1$} {
+			Сгенерировать новую популяцию решений для $k = 1, \ldots, \lambda$
+			\begin{equation}
+				\begin{aligned}
+					z_k & \sim \quad \mathcal{N}(0, I) \\
+					y_k & = BDz_k \quad  \sim \mathcal{N}(0, C)\\
+					x_k & = m + \sigma y_k \sim \quad \mathcal{N}(m, \sigma^2 C)\\
+				\end{aligned}
+			\end{equation}\
+			Селекция и рекомбинация:
+			\begin{equation}
+				\begin{aligned}
+					\langle y \rangle_w & = \sum_{i=1}^{\mu}\omega_iy_{i:\lambda}, \quad \text{где} \sum_{i=1}^{\mu}\omega_i = 1, \ \omega_i>0 \ \text{для} \ i = 1,\ldots, \mu\\
+					m &\leftarrow m + c_m\sigma\langle y \rangle_w \quad \text{равно} \sum_{i=1}^{\mu}\omega_i x_{i:\lambda} \ \text{если} \ c_m = 1
+				\end{aligned}
+			\end{equation}
+			Контроль размера шага:
+			\begin{equation}
+				\begin{aligned}
+					p_\sigma & \leftarrow (1 - c_\sigma)p_\sigma + \sqrt{c_\sigma(2-c_\sigma)\mu_{eff}}C^{-\frac{1}{2}}\langle y \rangle_w\\
+					\sigma & \leftarrow \sigma \times \exp\bigg(\frac{c_\sigma}{d_\sigma}\bigg(\frac{||p_\sigma||}{E||\mathcal{N}(0,I)||} - 1\bigg)\bigg)
+			\end{aligned}
+		\end{equation}
+		Адаптация матрицы ковариаций:
+		\begin{equation}
+			\begin{aligned}
+				p_c &\leftarrow (1- c_c)p_c + h_\sigma\sqrt{c_c(2-c_c)\mu_{eff}}\langle y \rangle_w\\
+				\omega_i^\circ & = \omega_i \times \bigg(1 \ \text{если} \ w_i \geq 0 \ \text{иначе} \ \frac{n}{||C^{-\frac{1}{2}}y_{i:\lambda}||^2}\bigg)\\
+			\end{aligned}
+		\end{equation}
+		\begin{equation}
+				C \leftarrow (1 + \underbrace{c_1 \delta(h_\sigma) - c_1 - c_\mu\sum \omega_j}_{\text{Обычно равно 0}})C + c_1p_cp_c^T + c_\mu \sum_{i=1}^{\lambda}w_i^\circ y_{i:\lambda}y_{i:\lambda}^T
+		\end{equation}
+		}		
+	}
+	\caption{Псевдокод CMA-ES \cite{HansenCmaes}}\label{alg:cmaes-pseudocode}
+\end{algorithm} 

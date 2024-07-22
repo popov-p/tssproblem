@@ -36,10 +36,15 @@ net_dict = {
 
 #simulation args
 time_to_teleport = str(-1)
-#last_simulation_step = str(10800)
+first_simulation_step = str(7200)
+last_simulation_step = str(10800)
 collision_mingap_factor = str(-1)
 default_carfollowmodel = 'IDM'
 #---------------
+
+#error-code values
+FAIL = int(1e6)
+#-----------------
 
 
 
@@ -51,12 +56,14 @@ def create_new_logic(net_input, additional_output, solution):
 
     for tl_logic in tl_logics:
         for phase in tl_logic.findall('.//phase'):
-            if "y" not in phase.attrib["state"]: #if phase is "optimizable"
+            if ("y" not in phase.attrib["state"]) and not(all(char == "r" for char in phase.attrib["state"])): #if phase is "optimizable"
                 duration = int(solution[0])
                 solution = np.delete(solution, 0)
                 phase.set('duration', str(duration))
-            else: #yellow constant 3
+            elif "y" in phase.attrib["state"]: #yellow constant 3 s
                 phase.set('duration', str(3))
+            else: #pedestrian phase, set const 24 s according to a traffic light docs
+                phase.set('duration', str(24))
         tl_logic.set('programID', 'generated')
 
     new_root.extend(tl_logics)
@@ -68,12 +75,12 @@ def get_total_waiting_time(xml_file):
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
-    vehicle_trip_statistics = root.find(".//vehicleTripStatistics") # vehicleTripStatistics 
-    performance = root.find(".//performance")
+    vehicle_trip_statistics = root.find(".//vehicleTripStatistics") 
+    #performance = root.find(".//performance")
 
     waitingTime = vehicle_trip_statistics.get('waitingTime')
-    end = performance.get('end')
-    return float(waitingTime)*float(end) # waitingTime
+    #end = performance.get('end')
+    return float(waitingTime)#*float(end) # waitingTime
 
 def generate_id():
     unique_id = str(uuid.uuid4())
@@ -85,26 +92,28 @@ def dump_data(output_path, row):
         csv_writer.writerow(row)
 
 def plot(simulation_name, plot_name):
+    annotations = {'gen': 'ГА', 'pso': 'МРЧ', 'cmaes': 'CMA-ES'}
     if plot_name == ch_iter_time:
         csv_data_list = []
         fig, ax = plt.subplots(2, 1, figsize=(8, 6))
-        for alg_name in [gen_name, pso_name, cmaes_name]:
-            log_path = f"{BASEDIR}/{simulation_name}/res_{alg_name}/results/{plot_name}.csv"
+        for alg_name in ['gen','pso','cmaes']:
+            log_path = f"{BASEDIR}/{simulation_name}/results/ch_iter_time_{alg_name}.csv"
             filename = os.path.basename(os.path.splitext(log_path)[0])
             df = pd.read_csv(log_path)
-            df.columns = filename.split('_')
+            ch, iterations, time, _ = filename.split('_')
+            df.columns = [ch, iterations, time]
             csv_data_list.append(df)
 
-            ax[0].plot(df['iter'], df['ch'], label= f'{alg_name}')
-            ax[0].set_title('cost-history, iterations')
-            ax[0].set_xlabel('iterations')
-            ax[0].set_ylabel('cost-history')
+            ax[0].plot(df['iter'], df['ch'], label= f'{annotations[alg_name]}')
+            ax[0].set_title('История значений ЦФ по итерациям')
+            ax[0].set_xlabel('Итерации')
+            ax[0].set_ylabel('Значения ЦФ')
             ax[0].legend()
 
-            ax[1].plot(df['iter'], df['time'], label= f'{alg_name}')
-            ax[1].set_title('time, iterations')
-            ax[1].set_xlabel('iterations')
-            ax[1].set_ylabel('iteraton time')
+            ax[1].plot(df['iter'], df['time'], label= f'{annotations[alg_name]}')
+            ax[1].set_title('Время работы по итерациям')
+            ax[1].set_xlabel('Итерации')
+            ax[1].set_ylabel('Время одной итерации')
             ax[1].legend()
 
             plt.tight_layout()
@@ -115,7 +124,8 @@ def is_started_with_sudo():
 
 def histogram():
     # Lists to store data
-    alg_names = []
+    alg_names = ['CMA-ES', 'ГА', 'МРЧ']
+    
     evals_all = []
     sum_times = []
     # Read data from CSV file
@@ -135,16 +145,16 @@ def histogram():
     # Create histogram
     plt.figure()
     plt.bar(total_evals.keys(), total_evals.values(), alpha=0.5)
-    plt.xlabel('Algorithm name')
-    plt.ylabel('Total evaluations')
-    plt.title('Total evaluations: commercial')
+    plt.xlabel('Название алгоритма')
+    plt.ylabel('Всего вычислений ЦФ')
+    plt.title('Количество вычислений ЦФ по алгоритмам')
     plt.grid(True)
 
     plt.figure()
     plt.bar(total_times.keys(), total_times.values(), alpha=0.5)
-    plt.xlabel('Algorithm name')
-    plt.ylabel('Total times')
-    plt.title('Total times: commercial')
+    plt.xlabel('Название алгоритма')
+    plt.ylabel('Время работы алгоритма [с]')
+    plt.title('Время работы алгоритмов')
     plt.grid(True)
 plt.show()
 
